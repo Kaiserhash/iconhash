@@ -59,3 +59,4 @@ build
 wp-content
 .wordup
 dist
+.idea
