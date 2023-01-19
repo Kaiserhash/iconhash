@@ -1,0 +1,44 @@
+# For Frontity you only need the local WordPress
+# installation. Because you don't develop a theme
+# or plugin in a classic way
+type: installation
+
+# The internal project name
+projectName: Testproject
+
+# The slug of your installation
+slug: testproject
+
+# The relative folder where the wp-content folder will be located
+srcFolder: wp-content
+
+# The localhost port of your WP server
+port: 9123
+
+# WordPress installation config
+wpInstall:
+  # Title of the WordPress installation
+  title: Testproject
+
+  # WordPress users with role
+  users:
+    - name: admin
+      password: 123456
+      email: test@example.com
+      role: administrator
+
+  # If necessary: custom roles
+  roles:
+    - name: A Custom editor role
+      key: custom_role
+      clone_from: editor
+      capabilities:
+        - view_products
+        - read_products
+        - build_products
+
+  # Plugins you need for your project
+  plugins: {}
+
+  # Themes you need for your project
+  themes: {}
