@@ -2,7 +2,7 @@ const settings = {
   "name": "iconichash",
   "state": {
     "frontity": {
-      "url": "http://localhost:9123",
+      "url": "https://iconichash.com",
     }
   },
   "packages": [
@@ -27,7 +27,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://localhost:9123",
+          "url": "https://iconichash.com",
           "homepage": "/home",
           "postsPage": "/blog"
         },

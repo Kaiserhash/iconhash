@@ -60,3 +60,4 @@ wp-content
 .wordup
 dist
 .idea
+.vercel
