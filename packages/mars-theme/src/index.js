@@ -16,7 +16,6 @@ const acfOptionsHandler = {
       endpoint: `/acf/v3/options/options`
     });
     const option = await response.json();
-
     // 2. Add data to `source`.
     const data = state.source.get(route);
     Object.assign(data, { ...option, isAcfOptionsPage: true });
