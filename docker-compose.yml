@@ -8,3 +8,13 @@ services:
     ports:
       - '3038:3038'
     restart: on-failure
+  nginx:
+    container_name: proxy_nginx
+    depends_on:
+      - client
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    restart: always
