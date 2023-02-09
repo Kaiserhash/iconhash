@@ -26,34 +26,34 @@ const acfOptionsHandler = {
   }
 };
 
-const interviewNavigationHandler = {
-  pattern: "interview-navigation",
-  func: async ({ route, state, libraries }) => {
-    try {
-      // 1. Get ACF option page from REST API.
-      const response = await libraries.source.api.get({
-        endpoint: "interview",
-        params: { _embed: true, }
-      });
-      const getAllInterviews = await response.json();
-      const [interviewId] = Object.keys(state.source.interview);
-      if(interviewId){
-        const getIndex = getAllInterviews.findIndex(({id}) => id === +interviewId);
-        if(getIndex !== -1){
-          const data = state.source.get(route);
-          Object.assign(data, {
-            interviewNav: {
-              prevUrl: getIndex > 0 ? `/interview/${getAllInterviews[getIndex - 1]?.slug}`: '/',
-              nextUrl: getIndex + 1 < getAllInterviews.length ? `/interview/${getAllInterviews[getIndex + 1]?.slug}`: '/',
-            }
-          });
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-};
+// const interviewNavigationHandler = {
+//   pattern: "interview-navigation",
+//   func: async ({ route, state, libraries }) => {
+//     try {
+//       // 1. Get ACF option page from REST API.
+//       const response = await libraries.source.api.get({
+//         endpoint: "interview",
+//         params: { _embed: true, }
+//       });
+//       const getAllInterviews = await response.json();
+//       const [interviewId] = Object.keys(state.source.interview);
+//       if(interviewId){
+//         const getIndex = getAllInterviews.findIndex(({id}) => id === +interviewId);
+//         if(getIndex !== -1){
+//           const data = state.source.get(route);
+//           Object.assign(data, {
+//             interviewNav: {
+//               prevUrl: getIndex > 0 ? `/interview/${getAllInterviews[getIndex - 1]?.slug}`: '/',
+//               nextUrl: getIndex + 1 < getAllInterviews.length ? `/interview/${getAllInterviews[getIndex + 1]?.slug}`: '/',
+//             }
+//           });
+//         }
+//       }
+//     } catch (e) {
+//       console.error(e);
+//     }
+//   }
+// };
 
 const marsTheme = {
   name: "@frontity/mars-theme",
@@ -86,7 +86,7 @@ const marsTheme = {
    */
   actions: {
     theme: {
-      beforeSSR: async ({  actions,state }) => {
+      beforeSSR: async ({  actions }) => {
         try {
           await actions.source.fetch("acf-options-page");
           // if(/^(\/interview\/)/g.test(state.router.link)){
@@ -114,7 +114,7 @@ const marsTheme = {
       processors: [image, iframe, link],
     },
     source: {
-      handlers: [acfOptionsHandler,interviewNavigationHandler]
+      handlers: [acfOptionsHandler]
     }
   },
 };

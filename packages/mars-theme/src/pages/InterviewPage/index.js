@@ -40,7 +40,7 @@ const DesktopBlock = styled('div')({
 const InterviewPage = ({state,data,actions}) => {
     useEffect(() => {
         actions.source.fetch("/interviews");
-    }, [data.id]);
+    }, []);
     const { items = [] } = state.source.get("/interviews");
     const page = state.source[data.type][data.id];
     const {

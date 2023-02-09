@@ -1,8 +1,7 @@
-import {Global, css, connect, Head, styled} from "frontity";
+import {Global, css, connect,  styled} from "frontity";
 import Switch from "@frontity/components/switch";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
-import Container from "./components/Container";
 import Footer from "./components/Footer";
 import InterviewPage from "./pages/InterviewPage";
 /**
