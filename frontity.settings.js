@@ -13,7 +13,8 @@ const settings = {
           "menu": [
             [
                 ["Home","/"],
-                ["Blog","/blog"]
+                ["Blog","/blog"],
+                ["Interviews","/interviews"]
             ],
           ],
           "featured": {
@@ -29,7 +30,14 @@ const settings = {
         "source": {
           "url": "https://iconichash.com",
           "homepage": "/home",
-          "postsPage": "/blog"
+          "postsPage": "/blog",
+          "postTypes": [
+            {
+              type: "interview",
+              endpoint: "interview",
+              archive: "/interviews"
+            }
+          ]
         },
       }
     },

@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "dev": "frontity dev",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build",
-    "serve": "frontity serve"
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build --public-path https://frontend.iconichash.com/static",
+    "serve": "frontity serve --https --port 3038"
   },
   "engines": {
     "node": ">=10.0.0",
@@ -17,6 +17,7 @@
   },
   "prettier": {},
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
@@ -29,7 +30,11 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
     "@frontity/yoast": "^2.1.1",
+    "antd": "^5.1.7",
+    "dayjs": "^1.11.7",
     "frontity": "^1.17.2",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "react-country-flag": "^3.0.2",
+    "react-lazy-load-image-component": "^1.5.6"
   }
 }

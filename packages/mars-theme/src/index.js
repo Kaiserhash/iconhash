@@ -11,14 +11,47 @@ library.add(fab, fas)
 const acfOptionsHandler = {
   pattern: "acf-options-page",
   func: async ({ route, state, libraries }) => {
-    // 1. Get ACF option page from REST API.
-    const response = await libraries.source.api.get({
-      endpoint: `/acf/v3/options/options`
-    });
-    const option = await response.json();
-    // 2. Add data to `source`.
-    const data = state.source.get(route);
-    Object.assign(data, { ...option, isAcfOptionsPage: true });
+    try {
+      // 1. Get ACF option page from REST API.
+      const response = await libraries.source.api.get({
+        endpoint: `/acf/v3/options/options`
+      });
+      const option = await response.json();
+      // 2. Add data to `source`.
+      const data = state.source.get(route);
+      Object.assign(data, { ...option, isAcfOptionsPage: true });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+};
+
+const interviewNavigationHandler = {
+  pattern: "interview-navigation",
+  func: async ({ route, state, libraries }) => {
+    try {
+      // 1. Get ACF option page from REST API.
+      const response = await libraries.source.api.get({
+        endpoint: "interview",
+        params: { _embed: true, }
+      });
+      const getAllInterviews = await response.json();
+      const [interviewId] = Object.keys(state.source.interview);
+      if(interviewId){
+        const getIndex = getAllInterviews.findIndex(({id}) => id === +interviewId);
+        if(getIndex !== -1){
+          const data = state.source.get(route);
+          Object.assign(data, {
+            interviewNav: {
+              prevUrl: getIndex > 0 ? `/interview/${getAllInterviews[getIndex - 1]?.slug}`: '/',
+              nextUrl: getIndex + 1 < getAllInterviews.length ? `/interview/${getAllInterviews[getIndex + 1]?.slug}`: '/',
+            }
+          });
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
 
@@ -53,9 +86,12 @@ const marsTheme = {
    */
   actions: {
     theme: {
-      beforeSSR: async ({  actions }) => {
+      beforeSSR: async ({  actions,state }) => {
         try {
           await actions.source.fetch("acf-options-page");
+          // if(/^(\/interview\/)/g.test(state.router.link)){
+          //   await actions.source.fetch("interview-navigation");
+          // }
         } catch (e) {
           console.error(e);
         }
@@ -78,7 +114,7 @@ const marsTheme = {
       processors: [image, iframe, link],
     },
     source: {
-      handlers: [acfOptionsHandler]
+      handlers: [acfOptionsHandler,interviewNavigationHandler]
     }
   },
 };

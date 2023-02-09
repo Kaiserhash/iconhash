@@ -15,6 +15,7 @@ const FooterTop = styled('div')({
     padding: '20px 0',
     borderBottom: '1px solid #EAEEF1',
     display: 'grid',
+    gridGap: '15px',
     gridTemplateColumns: '1fr 1fr',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -41,7 +42,7 @@ const Copyright = styled('div')({
 
 const FooterMobile = ({title = '', socials = [], copyright = ''}) => (
     <FooterMobileContainer>
-     <Container>
+     <Container className="container">
          <FooterTop>
              <Title title={title} />
              <SocialsMenu socials={socials} />
@@ -53,7 +54,7 @@ const FooterMobile = ({title = '', socials = [], copyright = ''}) => (
 
 const FooterDesktop = ({title = '', socials = [], copyright = ''}) => (
    <FooterDesktopContainer>
-       <Container>
+       <Container className="container">
            <Title title={title} />
            <Copyright>{copyright}</Copyright>
            <SocialsMenu socials={socials} />

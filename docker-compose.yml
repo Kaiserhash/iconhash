@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: iconichash_frontend
+    ports:
+      - '3038:3038'
+    restart: on-failure

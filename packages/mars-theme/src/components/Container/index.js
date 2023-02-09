@@ -6,10 +6,12 @@ const Wrapper = styled('div')({
     marginRight: 'auto',
     padding: '0 15px',
     maxWidth: '1212px',
-    width: '100%'
+    width: 'auto',
+    objectFit: 'cover',
+    objectPosition: 'center'
 })
-const Container = ({children}) =>(
-    <Wrapper className="container">
+const Container = ({children,...props}) =>(
+    <Wrapper {...props}>
         {children}
     </Wrapper>
 )

@@ -1,0 +1,7 @@
+node_modules
+build
+wp-content
+.wordup
+.vercel
+package-lock.json
+.htaccess
