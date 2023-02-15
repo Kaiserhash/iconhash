@@ -5,3 +5,4 @@ wp-content
 .vercel
 package-lock.json
 .htaccess
+yarn.lock

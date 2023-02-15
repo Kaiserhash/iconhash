@@ -31,10 +31,15 @@
     "@frontity/wp-source": "^1.11.7",
     "@frontity/yoast": "^2.1.1",
     "antd": "^5.1.7",
+    "change-config": "./packages/change-config",
     "dayjs": "^1.11.7",
     "frontity": "^1.17.2",
     "prop-types": "^15.8.1",
     "react-country-flag": "^3.0.2",
     "react-lazy-load-image-component": "^1.5.6"
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "^5.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

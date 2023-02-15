@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {styled} from "frontity";
+import {connect, styled} from "frontity";
+import {LazyLoadComponent} from "react-lazy-load-image-component/src";
 
 const Content = styled('div')({
  'p,blockquote,img,h1,h2,h3,h4,h5,h6': {
@@ -8,10 +9,7 @@ const Content = styled('div')({
  },
  'img': {
    width: '100%',
-   minHeight: '190px',
-   '@media (min-width: 990px)': {
-       minHeight: '444px',
-   }
+   height: 'auto'
  },
  'blockquote': {
     borderLeft: '6px solid #293BDC',
@@ -25,10 +23,19 @@ const Content = styled('div')({
 
 });
 
-const InterviewContent = ({content = ''}) => <Content dangerouslySetInnerHTML={{ __html: content }} />;
+const InterviewContent = ({content = '',libraries}) => {
+    const Html2React = libraries.html2react.Component;
+    return (
+        <LazyLoadComponent>
+            <Content>
+                <Html2React html={content} />
+            </Content>
+        </LazyLoadComponent>
+    )
+};
 
 InterviewContent.propTypes = {
     content: PropTypes.string.isRequired
 };
 
-export default InterviewContent;
+export default connect(InterviewContent);

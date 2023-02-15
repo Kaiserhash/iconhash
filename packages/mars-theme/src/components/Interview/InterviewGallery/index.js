@@ -95,8 +95,8 @@ const InterviewGallery = ({galleryTitle = '',galleryImages = [], loadMore = ''})
              </FlexContainer>
              <GalleryContainer>
                  {
-                     gallery.map(({ url,title = 'image' },index) => (
-                         <Image key={index} src={url} alt={title}  />
+                     gallery.map(({ url,title = 'image',width = 100,height = 100 },index) => (
+                         <Image key={index} src={url} alt={title} width={100} height={100}  />
                      ))
                  }
              </GalleryContainer>
