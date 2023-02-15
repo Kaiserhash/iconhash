@@ -1,4 +1,4 @@
-import React, { useMemo,useState } from "react";
+import React, { useMemo,useState,useEffect } from "react";
 import {styled} from "frontity";
 import {LazyLoadImage} from "react-lazy-load-image-component/src";
 import PropTypes from "prop-types";
@@ -70,13 +70,13 @@ const LoadMoreButton = styled('button')({
 const InterviewGallery = ({galleryTitle = '',galleryImages = [], loadMore = ''}) => {
     const [perPage, setPerPage] = useState(6);
     const [gallery,setGallery] = useState([]);
-    useState(() => {
+    useEffect(() => {
         setGallery(galleryImages.slice(0,perPage));
         return () => {
             setGallery([]);
             setPerPage(6);
         }
-    },[]);
+    },[galleryImages]);
     const totalImages = useMemo(() => galleryImages.length,[galleryImages]);
     const loadMoreHandler = () => {
        const calcPerPage = perPage + 6;
@@ -95,8 +95,8 @@ const InterviewGallery = ({galleryTitle = '',galleryImages = [], loadMore = ''})
              </FlexContainer>
              <GalleryContainer>
                  {
-                     gallery.map(({ url,title = 'image',width = 100,height = 100 },index) => (
-                         <Image key={index} src={url} alt={title} width={100} height={100}  />
+                     gallery.map(({ ID = 0,url,title = 'image',width = 100,height = 100 },index) => (
+                         <Image key={ID} src={url} alt={title} width={100} height={100}  />
                      ))
                  }
              </GalleryContainer>
