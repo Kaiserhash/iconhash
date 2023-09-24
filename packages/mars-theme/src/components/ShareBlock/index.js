@@ -57,7 +57,7 @@ const ShareTitle = styled('h4')({
     }
 })
 
-const ShareBlock = ({socials = [], subtitle = 'Dou you like this interview?', title = 'Share with friends'}) => {
+const ShareBlock = ({socialsBlock: { socials = [], subtitle = 'Dou you like this interview?', title = 'Share with friends' }}) => {
    return (
      <ShareContainer>
          <div>
@@ -70,14 +70,17 @@ const ShareBlock = ({socials = [], subtitle = 'Dou you like this interview?', ti
 }
 
 ShareBlock.propTypes = {
-    socials: PropTypes.arrayOf(
-        PropTypes.shape({
-            icon: PropTypes.string.isRequired,
-            link: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
+    socialsBlock: PropTypes.shape({
+        socials: PropTypes.arrayOf(
+            PropTypes.shape({
+                icon: PropTypes.string.isRequired,
+                link: PropTypes.string.isRequired
+            }).isRequired
+        ).isRequired,
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+    }).isRequired
+
 }
 
 export default ShareBlock;

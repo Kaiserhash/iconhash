@@ -7,7 +7,12 @@ const Image = styled(LazyLoadImage)({
     width: '100%',
     borderRadius: '12px',
     marginBottom: '15px',
-    height: 'auto',
+    height: '192px',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    '@media (min-width: 990px)': {
+        height: '460px',
+    }
 });
 const InterviewBanner = ({ url,title = 'image',width = 100,height = 100 }) => (
     <Image

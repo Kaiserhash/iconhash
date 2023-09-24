@@ -2,7 +2,7 @@ const settings = {
   "name": "iconichash",
   "state": {
     "frontity": {
-      "url": "https://iconichash.com",
+      "url": process.env.BACKEND_URL,
     }
   },
   "packages": [
@@ -28,7 +28,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://iconichash.com",
+          "url": process.env.BACKEND_URL,
           "homepage": "/home",
           "postsPage": "/blog",
           "postTypes": [

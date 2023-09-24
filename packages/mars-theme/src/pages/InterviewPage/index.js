@@ -47,26 +47,13 @@ const InterviewPage = ({state,data,actions}) => {
         date,
         acf: {
             mainBanner,
-            avatar,
-            infoTitle = '',
-            aboutList = [],
-            personalInfoTitle = '',
-            personalInfo = [],
-            memberOfTheMonth = false,
-            imgMemberOfTheMonth,
-            fullname = '',
-            instagramUrl = '',
-            instagramUrlText = '',
-            socialsMember = [],
+            authorInfo = {},
+            authorAbout = {},
             topContent = '',
+            readAlso = {},
+            gallery = [],
             bottomContent = '',
-            readAlso,
-            galleryTitle = '',
-            galleryImages = [],
-            loadMore = '',
-            socialsSubtitle = '',
-            socialsTitle = '',
-            socials = []
+            socialsBlock = []
     } } = page;
     const getNav = useMemo(() => {
         const getIndex = items.findIndex(({id}) => id === +data.id);
@@ -85,46 +72,33 @@ const InterviewPage = ({state,data,actions}) => {
                <ContentContainer className="content-container">
                    <div>
                        <MemberContacts
-                           memberOfTheMonth={memberOfTheMonth}
-                           imgMemberOfTheMonth={imgMemberOfTheMonth}
-                           fullname={fullname}
+                           authorAbout={authorAbout}
                            date={date}
-                           instagramUrl={instagramUrl}
-                           instagramUrlText={instagramUrlText}
-                           socialsMember={socialsMember}
                        />
                        <MobileBlock>
                            <MemberInformation
-                               avatar={avatar}
-                               infoTitle={infoTitle}
-                               aboutList={aboutList}
-                               personalInfoTitle={personalInfoTitle}
-                               personalInfo={personalInfo}
+                               authorInfo={authorInfo}
                            />
-                           <SocialsMenu  socials={socialsMember} />
+                           <SocialsMenu  socials={authorAbout?.socials} />
                        </MobileBlock>
                        <InterviewContent content={topContent} />
-                       {Object.values(readAlso).length ? <ReadAlsoBlock title={readAlso.title} page={readAlso.page} /> : null}
+                       {Object.values(readAlso).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}
                        <InterviewContent content={bottomContent} />
                    </div>
                    <DesktopBlock>
                        <MemberInformation
-                           avatar={avatar}
-                           infoTitle={infoTitle}
-                           aboutList={aboutList}
-                           personalInfoTitle={personalInfoTitle}
-                           personalInfo={personalInfo}
+                           authorInfo={authorInfo}
                        />
                    </DesktopBlock>
                    <MobileBlock>
-                       <ShareBlock socials={socials} title={socialsTitle} subtitle={socialsSubtitle} />
+                       <ShareBlock socialsBlock={socialsBlock} />
                    </MobileBlock>
                </ContentContainer>
            </Wrapper>
             <Container>
-                <InterviewGallery galleryImages={galleryImages} galleryTitle={galleryTitle} loadMore={loadMore} />
+                <InterviewGallery gallery={gallery} />
                 <DesktopBlock>
-                    <ShareBlock socials={socials} title={socialsTitle} subtitle={socialsSubtitle} />
+                    <ShareBlock socialsBlock={socialsBlock} />
                 </DesktopBlock>
             </Container>
         </>

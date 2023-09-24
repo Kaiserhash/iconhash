@@ -18,7 +18,7 @@ const LinkPage = styled('a')({
     color: '#293BDC',
     textDecoration: 'none'
 })
-const ReadAlsoBlock = ({title = '', page}) => (
+const ReadAlsoBlock = ({readAlso: { title = '', page }}) => (
   <Container>
       <Title>{title}</Title>
       <LinkPage href={page.url} target="_blank">{page.title}</LinkPage>
@@ -26,10 +26,12 @@ const ReadAlsoBlock = ({title = '', page}) => (
 );
 
 ReadAlsoBlock.propTypes = {
-    title: PropTypes.string.isRequired,
-    page: PropTypes.shape({
+    readAlso: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
+        page: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+        }).isRequired
     }).isRequired
 }
 

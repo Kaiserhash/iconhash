@@ -55,46 +55,62 @@ const Subtitle = styled('h5')({
 });
 
 
-const MemberInformation = ({ avatar,infoTitle = '',aboutList = [],personalInfoTitle = '',personalInfo = [] }) => (
+const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={} } }) => (
    <Container>
-     <AvatarContainer>
-        <Avatar
-            alt={avatar.title}
-            height={avatar.height}
-            src={avatar.url}
-            width={avatar.width}
-        />
-     </AvatarContainer>
-     <Title>{infoTitle}</Title>
-     <MemberAboutList aboutList={aboutList} />
-     <Subtitle>{personalInfoTitle}</Subtitle>
-     <MemberCharsList personalInfo={personalInfo}/>
+       {
+           Object.values(avatar).length &&
+           (
+               <AvatarContainer>
+                   <Avatar
+                       alt={avatar.title}
+                       height={avatar.height}
+                       src={avatar.url}
+                       width={avatar.width}
+                   />
+               </AvatarContainer>
+           )
+       }
+       {
+           Object.values(infoBlock).length && (
+               <>
+                   <Title>Information</Title>
+                   <MemberAboutList infoBlock={infoBlock} />
+               </>
+           )
+       }
+       {
+           Object.values(personalChar).length &&
+           (
+               <>
+                   <Subtitle>Personal characteristics</Subtitle>
+                   <MemberCharsList personalChar={personalChar} />
+               </>
+           )
+       }
    </Container>
 );
 
 MemberInformation.propTypes = {
-    personalInfo: PropTypes.arrayOf(
-        PropTypes.shape({
-            subtitle: PropTypes.string.isRequired,
+    authorInfo: PropTypes.shape({
+        avatar: PropTypes.shape({
             title: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired,
-    aboutList: PropTypes.arrayOf(
-        PropTypes.shape({
-            icon: PropTypes.string.isRequired,
-            subtitle: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            additionalIcon: PropTypes.string
-        }).isRequired
-    ).isRequired,
-    avatar: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired,
-    infoTitle: PropTypes.string.isRequired,
-    personalInfoTitle: PropTypes.string.isRequired
+            url: PropTypes.string.isRequired,
+            width: PropTypes.number.isRequired,
+            height: PropTypes.number.isRequired,
+        }).isRequired,
+        infoBlock: PropTypes.shape({
+            country: PropTypes.string.isRequired,
+            countryIcon: PropTypes.string,
+            city: PropTypes.string.isRequired,
+            profession: PropTypes.string.isRequired
+        }).isRequired,
+        personalChar: PropTypes.shape({
+            hairsColor: PropTypes.string.isRequired,
+            eyesColor: PropTypes.string.isRequired,
+            height: PropTypes.string.isRequired,
+            weight: PropTypes.string.isRequired,
+        }).isRequired,
+    }).isRequired
 };
 
 export default MemberInformationContainer(MemberInformation);

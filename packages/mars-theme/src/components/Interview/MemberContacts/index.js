@@ -4,7 +4,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component/src";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import SocialsMenu from "../../SocialsMenu";
-
+import memberIcon from "../../../../static/MemberOfTheMonth.svg";
 const Container = styled('div')({
     display: 'grid',
     gridGap: '15px',
@@ -57,23 +57,21 @@ const DesktopSocials = styled('div')({
 });
 
 const MemberContacts = ({
-                            memberOfTheMonth = false,
-                            imgMemberOfTheMonth,
-                            fullname = '',
-                            date = '',
-                            instagramUrl = '',
-                            instagramUrlText = '',
-                            socialsMember = []
+                            authorAbout: {
+                                fullname = '',
+                                tagLink = {},
+                                memberOfTheMonth = false,
+                                socials = [],
+                                date = ''
+                            }
 }) => (
    <Container>
      <MemberContainer>
          {
              memberOfTheMonth ?
              <MemberAchiveImage
-                 alt={imgMemberOfTheMonth?.title}
-                 src={imgMemberOfTheMonth?.url}
-                 width={imgMemberOfTheMonth?.width}
-                 height={imgMemberOfTheMonth?.height}
+                 alt={fullname}
+                 src={memberIcon}
              />
                  : null
          }
@@ -81,34 +79,32 @@ const MemberContacts = ({
             <MemberName>{fullname}</MemberName>
             <MemberContainer>
                 <PublishDate datetime={date}>{dayjs(date).format('MMMM YYYY')}</PublishDate>
-                <MemberLink href={instagramUrl} target="_blank">{instagramUrlText}</MemberLink>
+                <MemberLink href={tagLink?.url} target="_blank">{tagLink?.title}</MemberLink>
             </MemberContainer>
          </div>
      </MemberContainer>
      <DesktopSocials>
-         <SocialsMenu socials={socialsMember} />
+         <SocialsMenu socials={socials} />
      </DesktopSocials>
    </Container>
 );
 
 MemberContacts.propTypes = {
-    memberOfTheMonth: PropTypes.bool.isRequired,
-    imgMemberOfTheMonth:  PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired,
-    fullname: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    instagramUrl: PropTypes.string.isRequired,
-    instagramUrlText: PropTypes.string.isRequired,
-    socialsMember: PropTypes.arrayOf(
-        PropTypes.shape({
-            icon: PropTypes.string.isRequired,
-            link: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired
+    authorAbout: PropTypes.shape({
+        fullname: PropTypes.string.isRequired,
+        tagLink: PropTypes.shape({
+            url: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired
+        }).isRequired,
+        memberOfTheMonth: PropTypes.bool.isRequired,
+        socials: PropTypes.arrayOf(
+            PropTypes.shape({
+                icon: PropTypes.string.isRequired,
+                link: PropTypes.string.isRequired
+            })
+        ),
+        date: PropTypes.string.isRequired
+    }).isRequired
 }
 
 export default MemberContacts;

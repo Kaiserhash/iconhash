@@ -67,13 +67,13 @@ const LoadMoreButton = styled('button')({
     }
 });
 
-const InterviewGallery = ({galleryTitle = '',galleryImages = [], loadMore = ''}) => {
+const InterviewGallery = ({gallery = []}) => {
     const [perPage, setPerPage] = useState(6);
-    const [gallery,setGallery] = useState([]);
+    const [galleryImages,setGalleryImages] = useState([]);
     useEffect(() => {
-        setGallery(galleryImages.slice(0,perPage));
+        setGalleryImages(gallery.slice(0,perPage));
         return () => {
-            setGallery([]);
+            setGalleryImages([]);
             setPerPage(6);
         }
     },[galleryImages]);
@@ -81,34 +81,32 @@ const InterviewGallery = ({galleryTitle = '',galleryImages = [], loadMore = ''})
     const loadMoreHandler = () => {
        const calcPerPage = perPage + 6;
        setPerPage(calcPerPage);
-       setGallery([
+       setGalleryImages([
            ...gallery,
-           ...galleryImages.slice(gallery.length,calcPerPage)
+           ...gallery.slice(galleryImages.length,calcPerPage)
        ]);
     };
-    const showButton = useMemo(() => perPage < galleryImages.length,[perPage]);
+    const showButton = useMemo(() => perPage < gallery.length,[perPage]);
     return (
          <Container>
              <FlexContainer>
-                 <Title>{galleryTitle}</Title>
+                 <Title>Gallery</Title>
                  <CountImages>{totalImages}</CountImages>
              </FlexContainer>
              <GalleryContainer>
                  {
-                     gallery.map(({ ID = 0,url,title = 'image',width = 100,height = 100 },index) => (
-                         <Image key={ID} src={url} alt={title} width={100} height={100}  />
+                     galleryImages.map(({ ID = 0,url,title = 'image',width = 100,height = 100 },index) => (
+                         <Image key={ID} src={url} alt={title} width={width} height={height}  />
                      ))
                  }
              </GalleryContainer>
-             {showButton ? <LoadMoreButton type="button" onClick={() => loadMoreHandler()}>{loadMore}</LoadMoreButton>: null}
+             {showButton ? <LoadMoreButton type="button" onClick={() => loadMoreHandler()}>Show more</LoadMoreButton>: null}
          </Container>
     )
 };
 
 InterviewGallery.propTypes = {
-    galleryTitle: PropTypes.string.isRequired,
-    loadMore: PropTypes.string.isRequired,
-    galleryImages: PropTypes.arrayOf(PropTypes.shape({
+    gallery: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
         width: PropTypes.number.isRequired,

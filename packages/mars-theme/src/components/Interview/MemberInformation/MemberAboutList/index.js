@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ReactCountryFlag from "react-country-flag";
 import {styled} from "frontity";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -51,34 +51,55 @@ const AboutListTitle = styled('div')({
         fontSize: '18px',
     }
 });
-const MemberAboutList = ({aboutList = []}) => (
-    <AboutList>
+const MemberAboutList = ({infoBlock: { country = '',countryCode = '',city = '',profession  }}) =>  {
+    const aboutList = useMemo(() => [
         {
-            aboutList.map(({icon,subtitle,title,additionalIcon = ''},index) => (
-                <AboutListItem key={index}>
-                    <AboutListContainer>
-                        <AboutListIcon icon={icon} />
-                        <div>
-                            <AboutListSubtitle>{subtitle}</AboutListSubtitle>
-                            <AboutListTitle>{title}</AboutListTitle>
-                        </div>
-                    </AboutListContainer>
-                    { additionalIcon ? <ReactCountryFlag countryCode={additionalIcon} />: null }
-                </AboutListItem>
-            ) )
+            id: 1,
+            title: country,
+            subtitle: 'Country',
+            icon: 'fa-solid fa-earth-americas',
+            additionalIcon: countryCode
+        },
+        {
+            id: 2,
+            name: city,
+            subtitle: 'City',
+            icon: 'fa-solid fa-earth-americas',
+        },
+        {
+            id: 3,
+            name: profession,
+            subtitle: 'Profession',
+            icon: 'fa-solid fa-lightbulb',
         }
-    </AboutList>
-);
+    ],[country,countryCode,city,profession])
+    return (
+        <AboutList>
+            {
+                aboutList.map(({id,name,icon,additionalIcon,subtitle,title}) => (
+                    <AboutListItem key={id}>
+                        <AboutListContainer>
+                            <AboutListIcon icon={icon} />
+                            <div>
+                                <AboutListSubtitle>{subtitle}</AboutListSubtitle>
+                                <AboutListTitle>{title}</AboutListTitle>
+                            </div>
+                        </AboutListContainer>
+                        { additionalIcon ? <ReactCountryFlag countryCode={additionalIcon} />: null }
+                    </AboutListItem>
+                ) )
+            }
+        </AboutList>
+    );
+};
 
 MemberAboutList.propTypes = {
-    aboutList: PropTypes.arrayOf(
-        PropTypes.shape({
-            icon: PropTypes.string.isRequired,
-            subtitle: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            additionalIcon: PropTypes.string
-        }).isRequired
-    ).isRequired
+    infoBlock: PropTypes.shape({
+        country: PropTypes.string.isRequired,
+        countryIcon: PropTypes.string,
+        city: PropTypes.string.isRequired,
+        profession: PropTypes.string.isRequired
+    }).isRequired
 };
 
 export default MemberAboutList;

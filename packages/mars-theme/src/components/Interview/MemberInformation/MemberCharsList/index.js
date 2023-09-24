@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {styled} from "frontity";
 import PropTypes from "prop-types";
 
@@ -36,26 +36,50 @@ const CharsListTitle = styled('div')({
     }
 });
 
-const MemberCharsList = ({personalInfo = []}) => (
-   <CharsList>
-       {
-           personalInfo.map(({title,subtitle},index) => (
-               <CharsListItem key={index}>
-                   <CharsListSubtitle>{subtitle}</CharsListSubtitle>
-                   <CharsListTitle>{title}</CharsListTitle>
-               </CharsListItem>
-           ))
-       }
-   </CharsList>
-);
+const MemberCharsList = ({personalChar: { hairsColor,eyesColor,weight,height }}) => {
+    const charList = useMemo(() => [
+        {
+            id: 1,
+            subtitle: 'Hairs color',
+            title: hairsColor
+        },
+        {
+            id: 2,
+            subtitle: 'Eyes color',
+            title: hairsColor
+        },
+        {
+            id: 3,
+            subtitle: 'Height',
+            title: height
+        },
+        {
+            id: 4,
+            subtitle: 'Weight',
+            title: weight
+        }
+    ],[hairsColor,eyesColor,weight,height])
+    return (
+        <CharsList>
+            {
+                charList.map(({title,subtitle,id}) => (
+                    <CharsListItem key={id}>
+                        <CharsListSubtitle>{subtitle}</CharsListSubtitle>
+                        <CharsListTitle>{title}</CharsListTitle>
+                    </CharsListItem>
+                ))
+            }
+        </CharsList>
+    )
+}
 
 MemberCharsList.propTypes = {
-    personalInfo: PropTypes.arrayOf(
-        PropTypes.shape({
-            subtitle: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired
+    personalChar: PropTypes.shape({
+        hairsColor: PropTypes.string.isRequired,
+        eyesColor: PropTypes.string.isRequired,
+        weight: PropTypes.string.isRequired,
+        height: PropTypes.string.isRequired,
+    }).isRequired
 };
 
 export default MemberCharsList;

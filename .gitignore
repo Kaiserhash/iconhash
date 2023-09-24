@@ -56,10 +56,11 @@ macOS .DS_Store files
 .env
 # Frontity
 build
-wp-content
 .wordup
 dist
 .idea
 .vercel
 yarn.lock
 package-lock.json
+db
+/wp-content/uploads

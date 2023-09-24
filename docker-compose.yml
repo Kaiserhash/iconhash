@@ -1,20 +1,67 @@
 version: '3.8'
 services:
-  client:
+  iconichash_client:
     build:
       dockerfile: Dockerfile
       context: .
-    container_name: iconichash_frontend
     ports:
       - '3038:3038'
     restart: on-failure
-  nginx:
-    container_name: proxy_nginx
     depends_on:
-      - client
+      - iconichash_wordpress
+    env_file:
+      - .env
+  iconichash_nginx:
+    depends_on:
+      - iconichash_client
     image: nginx:latest
     ports:
       - '80:80'
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/conf.d
     restart: always
+    env_file:
+      - .env
+    networks:
+      - app-network
+  iconichash_wordpress:
+    image: wordpress:latest
+    ports:
+      - '8080:80'
+    depends_on:
+      - iconichash_wordpressdb
+    env_file:
+      - .env
+    environment:
+      - WORDPRESS_DB_HOST=iconichash_wordpressdb:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=$MYSQL_DATABASE
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./php-config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+    networks:
+      - app-network
+    restart: unless-stopped
+  iconichash_wordpressdb:
+    image: mysql:latest
+    ports:
+      - 3316:3306
+    command: [
+      '--default_authentication_plugin=mysql_native_password',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    env_file:
+      - .env
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
