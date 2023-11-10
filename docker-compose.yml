@@ -11,19 +11,24 @@ services:
       - iconichash_wordpress
     env_file:
       - .env
+    networks:
+      - frontend-iconichash
   iconichash_nginx:
     depends_on:
       - iconichash_client
     image: nginx:latest
     ports:
       - '80:80'
+      - '443:443'
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
     restart: always
     env_file:
       - .env
     networks:
-      - app-network
+      - frontend-iconichash
+      - iconichash
   iconichash_wordpress:
     image: wordpress:latest
     ports:
@@ -63,5 +68,7 @@ services:
     networks:
       - app-network
 networks:
-  app-network:
+  frontend-iconichash:
+    driver: bridge
+  iconichash:
     driver: bridge
