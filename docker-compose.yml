@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
     networks:
-      - frontend-iconichash
+      - app-network
   iconichash_nginx:
     build:
       dockerfile: nginx.Dockerfile
@@ -29,8 +29,7 @@ services:
     env_file:
       - .env
     networks:
-      - frontend-iconichash
-      - iconichash
+      - app-network
   iconichash_wordpress:
     image: wordpress:latest
     ports:
@@ -70,7 +69,5 @@ services:
     networks:
       - app-network
 networks:
-  frontend-iconichash:
-    driver: bridge
-  iconichash:
+  app-network:
     driver: bridge
