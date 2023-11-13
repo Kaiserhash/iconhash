@@ -64,3 +64,4 @@ yarn.lock
 package-lock.json
 db
 /wp-content/uploads
+ssl
