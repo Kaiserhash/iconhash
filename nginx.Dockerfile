@@ -1,7 +1,7 @@
 FROM nginx
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./ssl /etc/letsencrypt/live/
-RUN apt-get update && apt-get install -y certbot
+#RUN apt-get update && apt-get install -y certbot
 #RUN mkdir -p /var/www/html
 #RUN mkdir -p /etc/letsencrypt/live/frontend.iconichash.com
 #RUN mkdir -p /etc/letsencrypt/live/iconichash.com
