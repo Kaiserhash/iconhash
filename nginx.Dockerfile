@@ -1,5 +1,4 @@
 FROM nginx
-
 # Install dependencies
 RUN apt-get update && apt-get install -y curl ca-certificates
 
