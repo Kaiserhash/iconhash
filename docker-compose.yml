@@ -34,7 +34,7 @@ services:
     networks:
       - app-network
   iconichash_wordpress:
-    image: wordpress:6.2.2-php8.0-fpm-alpine
+    image: wordpress:6.4.1-php8.0-fpm
     depends_on:
       - iconichash_wordpressdb
     env_file:
