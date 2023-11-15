@@ -11,8 +11,8 @@ RUN curl -Lo /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/release
 RUN mkdir -p /etc/nginx/ssl
 
 # Copy nginx configuration
-COPY ./nginx/nginx_frontend.conf /etc/nginx/conf.d/
-COPY ./nginx/nginx_wordpress.conf /etc/nginx/conf.d/
+COPY ./nginx/nginx_frontend.conf /etc/nginx/nginx_frontend.conf
+COPY ./nginx/nginx_wordpress.conf /etc/nginx/nginx_wordpress.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Generate SSL certificates with mkcert
