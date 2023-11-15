@@ -24,7 +24,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./apache:/etc/apache2/sites-available  # Apache configuration files
+      - ./apache:/usr/local/apache2/conf  # Apache configuration files
       - ./php-config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
 #  iconichash_nginx:
 #    build:
