@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "frontity dev",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build --public-path https://frontend.iconichash.com/static",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build --public-path http://frontend.iconichash.com/static",
     "serve": "frontity serve --https --port 3038"
   },
   "engines": {
