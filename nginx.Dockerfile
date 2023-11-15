@@ -1,15 +1,25 @@
 FROM nginx
+
+# Install dependencies
+RUN apt-get update && apt-get install -y curl ca-certificates
+
+# Install mkcert
+RUN curl -Lo /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 && \
+    chmod +x /usr/local/bin/mkcert
+
+# Create SSL directory
+RUN mkdir -p /etc/nginx/ssl
+
+# Copy nginx configuration
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./ssl /etc/letsencrypt/live/
-#RUN apt-get update && apt-get install -y certbot
-#RUN mkdir -p /var/www/html
-#RUN mkdir -p /etc/letsencrypt/live/frontend.iconichash.com
-#RUN mkdir -p /etc/letsencrypt/live/iconichash.com
-#RUN certbot certonly --webroot -w /var/www/html -d frontend.iconichash.com -d www.frontend.iconichash.com --register-unsafely-without-email
-#RUN certbot certonly --webroot -w /var/www/html -d iconichash.com -d www.iconichash.com --register-unsafely-without-email
-#RUN cp -r /etc/letsencrypt/live/frontend.iconichash.com /etc/letsencrypt/live/iconichash.com /etc/letsencrypt/live/
+
+# Generate SSL certificates with mkcert
+RUN mkcert -cert-file /etc/nginx/ssl/frontend.iconichash.com.crt -key-file /etc/nginx/ssl/frontend.iconichash.com.key frontend.iconichash.com
+RUN mkcert -cert-file /etc/nginx/ssl/iconichash.com.crt -key-file /etc/nginx/ssl/iconichash.com.key iconichash.com
+
+# Expose ports
 EXPOSE 80
 EXPOSE 443
 
-
+# Start nginx with the generated certificates
 CMD ["nginx", "-g", "daemon off;"]
