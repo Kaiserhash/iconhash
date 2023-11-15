@@ -44,9 +44,6 @@ services:
       - WORDPRESS_DB_USER=$MYSQL_USER
       - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
       - WORDPRESS_DB_NAME=$MYSQL_DATABASE
-      - WORDPRESS_HOME=https://iconichash.com
-      - WORDPRESS_SITEURL=https://iconichash.com
-      - FORCE_SSL_ADMIN=true
     volumes:
       - ./wp-content:/var/www/html/wp-content
       - ./php-config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
