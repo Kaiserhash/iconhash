@@ -19,6 +19,7 @@ services:
       context: .
     depends_on:
       - iconichash_client
+      - iconichash_wordpress
     image: nginx:latest
     ports:
       - '80:80'
