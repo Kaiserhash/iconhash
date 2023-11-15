@@ -36,7 +36,7 @@ services:
   iconichash_wordpress:
     image: wordpress:6.2.2-php8.0-fpm-alpine
     ports:
-      - "127.0.0.1:9000:9000"
+      - "9000:9000"
     depends_on:
       - iconichash_wordpressdb
     env_file:
