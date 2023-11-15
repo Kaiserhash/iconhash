@@ -26,6 +26,8 @@ services:
       - '443:443'
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx_frontend.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx_wordpress.conf
     restart: always
     env_file:
       - .env
