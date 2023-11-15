@@ -35,8 +35,6 @@ services:
       - app-network
   iconichash_wordpress:
     image: wordpress:latest
-    ports:
-      - '8080:80'
     depends_on:
       - iconichash_wordpressdb
     env_file:
