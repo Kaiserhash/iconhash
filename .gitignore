@@ -65,3 +65,4 @@ package-lock.json
 db
 /wp-content/uploads
 ssl
+db_data
