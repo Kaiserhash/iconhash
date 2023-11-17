@@ -3,5 +3,5 @@ WORKDIR /frontend
 COPY . .
 RUN yarn install
 COPY . .
-RUN yarn run build --public-path https://frontend.iconichash.com/static
+RUN yarn run build
 CMD [ "yarn", "serve" ]
