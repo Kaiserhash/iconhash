@@ -72,7 +72,7 @@ services:
       MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
       UPLOAD_LIMIT: 50M
     ports:
-      - 8080:80
+      - 8082:80
     links:
       - iconichash_wordpressdb:iconichash_wordpressdb
   iconichash_wordpressdb:
