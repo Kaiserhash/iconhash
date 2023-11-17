@@ -64,6 +64,17 @@ services:
     networks:
       - app-network
     restart: unless-stopped
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: iconichash_wordpressdb
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      UPLOAD_LIMIT: 50M
+    ports:
+      - 8080:80
+    links:
+      - iconichash_wordpressdb:iconichash_wordpressdb
   iconichash_wordpressdb:
     image: mysql:latest
     ports:
@@ -80,9 +91,12 @@ services:
     env_file:
       - .env
     volumes:
-      - ./db:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - app-network
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  db_data:
