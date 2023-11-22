@@ -73,8 +73,10 @@ services:
       UPLOAD_LIMIT: 50M
     ports:
       - 8082:80
-    links:
-      - iconichash_wordpressdb:iconichash_wordpressdb
+    depends_on:
+      - iconichash_wordpressdb
+    networks:
+      - app-network
   iconichash_wordpressdb:
     image: mysql:latest
     ports:
