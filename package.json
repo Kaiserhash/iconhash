@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "dev": "frontity dev",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build --public-path https://frontend.iconichash.com/static",
-    "serve": "frontity serve --https --port 443"
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider; frontity build --public-path https://iconhash.vercel.app/static",
+    "serve": "frontity serve --https --port 3038"
   },
   "engines": {
     "node": ">=10.0.0",
