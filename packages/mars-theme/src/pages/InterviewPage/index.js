@@ -66,45 +66,45 @@ const InterviewPage = ({state,data,actions}) => {
     },[items,data.id]);
     return (
         <>
-            <Container>
-                <InterviewNavigation prevUrl={getNav.prevUrl} nextUrl={getNav.nextUrl} />
-                <InterviewBanner url={mainBanner.url} width={mainBanner.width} height={mainBanner.height} title={mainBanner.title} />
-            </Container>
-           <Wrapper>
-               <ContentContainer className="content-container">
-                   <div>
-                       <MemberContacts
-                           authorAbout={authorAbout}
-                           date={date}
-                       />
-                       <MobileBlock>
-                           <MemberInformation
-                               authorInfo={authorInfo}
-                           />
-                           <SocialsMenu  socials={authorAbout?.socials} />
-                       </MobileBlock>
-                       <InterviewContent content={topContent} />
-                       {Object.values(readAlso || {}).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}
-                       {bottomContent && <InterviewContent content={bottomContent} />}
-                   </div>
-                   <DesktopBlock>
-                       <MemberInformation
-                           authorInfo={authorInfo}
-                       />
-                   </DesktopBlock>
-                   <MobileBlock>
-                       <ShareBlock socialsBlock={socialsBlock} />
-                   </MobileBlock>
-               </ContentContainer>
-           </Wrapper>
-            <Container>
-                {
-                    gallery ? <InterviewGallery gallery={gallery} />: null
-                }
-                <DesktopBlock>
-                    <ShareBlock socialsBlock={socialsBlock} />
-                </DesktopBlock>
-            </Container>
+           {/* <Container>*/}
+           {/*     <InterviewNavigation prevUrl={getNav?.prevUrl} nextUrl={getNav?.nextUrl} />*/}
+           {/*     <InterviewBanner url={mainBanner?.url} width={mainBanner?.width} height={mainBanner?.height} title={mainBanner?.title} />*/}
+           {/* </Container>*/}
+           {/*<Wrapper>*/}
+           {/*    <ContentContainer className="content-container">*/}
+           {/*        <div>*/}
+           {/*            <MemberContacts*/}
+           {/*                authorAbout={authorAbout}*/}
+           {/*                date={date}*/}
+           {/*            />*/}
+           {/*            <MobileBlock>*/}
+           {/*                <MemberInformation*/}
+           {/*                    authorInfo={authorInfo}*/}
+           {/*                />*/}
+           {/*                <SocialsMenu  socials={authorAbout?.socials} />*/}
+           {/*            </MobileBlock>*/}
+           {/*            <InterviewContent content={topContent} />*/}
+           {/*            {Object.values(readAlso || {}).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}*/}
+           {/*            {bottomContent && <InterviewContent content={bottomContent} />}*/}
+           {/*        </div>*/}
+           {/*        <DesktopBlock>*/}
+           {/*            <MemberInformation*/}
+           {/*                authorInfo={authorInfo}*/}
+           {/*            />*/}
+           {/*        </DesktopBlock>*/}
+           {/*        <MobileBlock>*/}
+           {/*            <ShareBlock socialsBlock={socialsBlock} />*/}
+           {/*        </MobileBlock>*/}
+           {/*    </ContentContainer>*/}
+           {/*</Wrapper>*/}
+           {/* <Container>*/}
+           {/*     {*/}
+           {/*         gallery ? <InterviewGallery gallery={gallery} />: null*/}
+           {/*     }*/}
+           {/*     <DesktopBlock>*/}
+           {/*         <ShareBlock socialsBlock={socialsBlock} />*/}
+           {/*     </DesktopBlock>*/}
+           {/* </Container>*/}
         </>
     )
 }

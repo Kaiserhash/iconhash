@@ -21,7 +21,7 @@ const LinkPage = styled('a')({
 const ReadAlsoBlock = ({readAlso: { title = '', page }}) => (
   <Container>
       <Title>{title}</Title>
-      <LinkPage href={page.url} target="_blank">{page.title}</LinkPage>
+      <LinkPage href={page?.url} target="_blank">{page?.title}</LinkPage>
   </Container>
 );
 
