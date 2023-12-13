@@ -95,7 +95,7 @@ const InterviewGallery = ({gallery: { list = [],title }}) => {
              </FlexContainer>
              <GalleryContainer>
                  {
-                     galleryImages.map(({ ID = 0,url,title = 'image',width = 100,height = 100 },index) => (
+                     galleryImages.map(({ img: { ID = 0,url,title = 'image',width = 100,height = 100 } },index) => (
                          <Image key={ID} src={url} alt={title} width={width} height={height}  />
                      ))
                  }
@@ -106,12 +106,15 @@ const InterviewGallery = ({gallery: { list = [],title }}) => {
 };
 
 InterviewGallery.propTypes = {
-    gallery: PropTypes.arrayOf(PropTypes.shape({
+    gallery: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired).isRequired
+        list: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+            width: PropTypes.number.isRequired,
+            height: PropTypes.number.isRequired,
+        }).isRequired).isRequired
+    }).isRequired
 };
 
 export default InterviewGallery;

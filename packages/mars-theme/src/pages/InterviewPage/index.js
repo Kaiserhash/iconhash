@@ -42,9 +42,7 @@ const InterviewPage = ({state,data,actions}) => {
         actions.source.fetch("/interviews");
     }, []);
     const { items = [] } = state.source.get("/interviews");
-    console.log(items)
     const page = state.source[data.type][data.id];
-    console.log(page)
     const {
         date,
         acf: {
@@ -53,7 +51,7 @@ const InterviewPage = ({state,data,actions}) => {
             authorAbout = {},
             topContent = '',
             readAlso = {},
-            gallery = [],
+            gallery = {},
             bottomContent = '',
             socialsBlock = []
     } } = page;
@@ -66,45 +64,45 @@ const InterviewPage = ({state,data,actions}) => {
     },[items,data.id]);
     return (
         <>
-           {/* <Container>*/}
-           {/*     <InterviewNavigation prevUrl={getNav?.prevUrl} nextUrl={getNav?.nextUrl} />*/}
-           {/*     <InterviewBanner url={mainBanner?.url} width={mainBanner?.width} height={mainBanner?.height} title={mainBanner?.title} />*/}
-           {/* </Container>*/}
-           {/*<Wrapper>*/}
-           {/*    <ContentContainer className="content-container">*/}
-           {/*        <div>*/}
-           {/*            <MemberContacts*/}
-           {/*                authorAbout={authorAbout}*/}
-           {/*                date={date}*/}
-           {/*            />*/}
-           {/*            <MobileBlock>*/}
-           {/*                <MemberInformation*/}
-           {/*                    authorInfo={authorInfo}*/}
-           {/*                />*/}
-           {/*                <SocialsMenu  socials={authorAbout?.socials} />*/}
-           {/*            </MobileBlock>*/}
-           {/*            <InterviewContent content={topContent} />*/}
-           {/*            {Object.values(readAlso || {}).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}*/}
-           {/*            {bottomContent && <InterviewContent content={bottomContent} />}*/}
-           {/*        </div>*/}
-           {/*        <DesktopBlock>*/}
-           {/*            <MemberInformation*/}
-           {/*                authorInfo={authorInfo}*/}
-           {/*            />*/}
-           {/*        </DesktopBlock>*/}
-           {/*        <MobileBlock>*/}
-           {/*            <ShareBlock socialsBlock={socialsBlock} />*/}
-           {/*        </MobileBlock>*/}
-           {/*    </ContentContainer>*/}
-           {/*</Wrapper>*/}
-           {/* <Container>*/}
-           {/*     {*/}
-           {/*         gallery ? <InterviewGallery gallery={gallery} />: null*/}
-           {/*     }*/}
-           {/*     <DesktopBlock>*/}
-           {/*         <ShareBlock socialsBlock={socialsBlock} />*/}
-           {/*     </DesktopBlock>*/}
-           {/* </Container>*/}
+            <Container>
+                <InterviewNavigation prevUrl={getNav?.prevUrl} nextUrl={getNav?.nextUrl} />
+                <InterviewBanner url={mainBanner?.url} width={mainBanner?.width} height={mainBanner?.height} title={mainBanner?.title} />
+            </Container>
+           <Wrapper>
+               <ContentContainer className="content-container">
+                   <div>
+                       <MemberContacts
+                           authorAbout={authorAbout}
+                           date={date}
+                       />
+                       <MobileBlock>
+                           <MemberInformation
+                               authorInfo={authorInfo}
+                           />
+                           <SocialsMenu  socials={authorAbout?.socials} />
+                       </MobileBlock>
+                       <InterviewContent content={topContent} />
+                       {Object.values(readAlso || {}).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}
+                       {bottomContent && <InterviewContent content={bottomContent} />}
+                   </div>
+                   <DesktopBlock>
+                       <MemberInformation
+                           authorInfo={authorInfo}
+                       />
+                   </DesktopBlock>
+                   <MobileBlock>
+                       <ShareBlock socialsBlock={socialsBlock} />
+                   </MobileBlock>
+               </ContentContainer>
+           </Wrapper>
+            <Container>
+                {
+                    Object.values(gallery || {}).length ? <InterviewGallery gallery={gallery} />: null
+                }
+                <DesktopBlock>
+                    <ShareBlock socialsBlock={socialsBlock} />
+                </DesktopBlock>
+            </Container>
         </>
     )
 }
