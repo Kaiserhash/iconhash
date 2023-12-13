@@ -33,8 +33,8 @@ const settings = {
           "postsPage": "/blog",
           "postTypes": [
             {
-              type: "interview",
-              endpoint: "interview",
+              type: "interviews",
+              endpoint: "interviews",
               archive: "/interviews"
             }
           ]
