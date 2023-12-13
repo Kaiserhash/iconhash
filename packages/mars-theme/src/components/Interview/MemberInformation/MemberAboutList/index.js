@@ -62,13 +62,13 @@ const MemberAboutList = ({infoBlock: { country = '',countryIcon = '',city = '',p
         },
         {
             id: 2,
-            name: city,
+            title: city,
             subtitle: 'City',
             icon: 'fa-solid fa-earth-americas',
         },
         {
             id: 3,
-            name: profession,
+            title: profession,
             subtitle: 'Profession',
             icon: 'fa-solid fa-lightbulb',
         }
