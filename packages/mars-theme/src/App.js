@@ -18,6 +18,7 @@ const Main = styled('main')({
 const App = ({ state }) => {
     // Get information about the current URL.
     const data = state.source.get(state.router.link);
+    console.log(data)
     return (
         <>
             <Global styles={globalStyles} />
@@ -25,7 +26,7 @@ const App = ({ state }) => {
             <Main>
                 <Switch>
                     <HomePage when={data.isHome} />
-                    <InterviewPage when={data.isInterview} data={data} />
+                    <InterviewPage when={data.isInterviews} data={data} />
                 </Switch>
             </Main>
             <Footer />
