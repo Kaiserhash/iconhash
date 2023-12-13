@@ -51,14 +51,14 @@ const AboutListTitle = styled('div')({
         fontSize: '18px',
     }
 });
-const MemberAboutList = ({infoBlock: { country = '',countryCode = '',city = '',profession  }}) =>  {
+const MemberAboutList = ({infoBlock: { country = '',countryIcon = '',city = '',profession  }}) =>  {
     const aboutList = useMemo(() => [
         {
             id: 1,
             title: country,
             subtitle: 'Country',
             icon: 'fa-solid fa-earth-americas',
-            additionalIcon: countryCode
+            additionalIcon: countryIcon
         },
         {
             id: 2,
@@ -72,7 +72,7 @@ const MemberAboutList = ({infoBlock: { country = '',countryCode = '',city = '',p
             subtitle: 'Profession',
             icon: 'fa-solid fa-lightbulb',
         }
-    ],[country,countryCode,city,profession])
+    ],[country,countryIcon,city,profession])
     return (
         <AboutList>
             {

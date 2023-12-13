@@ -58,7 +58,7 @@ const Subtitle = styled('h5')({
 const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={} } }) => (
    <Container>
        {
-           Object.values(avatar).length &&
+           Object.values(avatar || {}).length &&
            (
                <AvatarContainer>
                    <Avatar
@@ -71,7 +71,7 @@ const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={}
            )
        }
        {
-           Object.values(infoBlock).length && (
+           Object.values(infoBlock || {}).length && (
                <>
                    <Title>Information</Title>
                    <MemberAboutList infoBlock={infoBlock} />
@@ -79,7 +79,7 @@ const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={}
            )
        }
        {
-           Object.values(personalChar).length &&
+           Object.values(personalChar || {}).length &&
            (
                <>
                    <Subtitle>Personal characteristics</Subtitle>

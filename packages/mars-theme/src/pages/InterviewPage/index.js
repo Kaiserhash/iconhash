@@ -84,8 +84,8 @@ const InterviewPage = ({state,data,actions}) => {
                            <SocialsMenu  socials={authorAbout?.socials} />
                        </MobileBlock>
                        <InterviewContent content={topContent} />
-                       {Object.values(readAlso).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}
-                       <InterviewContent content={bottomContent} />
+                       {Object.values(readAlso || {}).length ? <ReadAlsoBlock readAlso={readAlso} /> : null}
+                       {bottomContent && <InterviewContent content={bottomContent} />}
                    </div>
                    <DesktopBlock>
                        <MemberInformation
@@ -98,7 +98,9 @@ const InterviewPage = ({state,data,actions}) => {
                </ContentContainer>
            </Wrapper>
             <Container>
-                <InterviewGallery gallery={gallery} />
+                {
+                    gallery ? <InterviewGallery gallery={gallery} />: null
+                }
                 <DesktopBlock>
                     <ShareBlock socialsBlock={socialsBlock} />
                 </DesktopBlock>

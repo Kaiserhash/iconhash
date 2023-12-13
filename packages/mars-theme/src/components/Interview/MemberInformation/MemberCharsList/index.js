@@ -46,7 +46,7 @@ const MemberCharsList = ({personalChar: { hairsColor,eyesColor,weight,height }})
         {
             id: 2,
             subtitle: 'Eyes color',
-            title: hairsColor
+            title: eyesColor
         },
         {
             id: 3,

@@ -67,11 +67,11 @@ const LoadMoreButton = styled('button')({
     }
 });
 
-const InterviewGallery = ({gallery = []}) => {
+const InterviewGallery = ({gallery: { list = [],title }}) => {
     const [perPage, setPerPage] = useState(6);
     const [galleryImages,setGalleryImages] = useState([]);
     useEffect(() => {
-        setGalleryImages(gallery.slice(0,perPage));
+        setGalleryImages(list.slice(0,perPage));
         return () => {
             setGalleryImages([]);
             setPerPage(6);
@@ -82,15 +82,15 @@ const InterviewGallery = ({gallery = []}) => {
        const calcPerPage = perPage + 6;
        setPerPage(calcPerPage);
        setGalleryImages([
-           ...gallery,
-           ...gallery.slice(galleryImages.length,calcPerPage)
+           ...list,
+           ...list.slice(galleryImages.length,calcPerPage)
        ]);
     };
-    const showButton = useMemo(() => perPage < gallery.length,[perPage]);
+    const showButton = useMemo(() => perPage < list.length,[perPage]);
     return (
          <Container>
              <FlexContainer>
-                 <Title>Gallery</Title>
+                 <Title>{title}</Title>
                  <CountImages>{totalImages}</CountImages>
              </FlexContainer>
              <GalleryContainer>
