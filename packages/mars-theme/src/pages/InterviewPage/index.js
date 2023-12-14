@@ -62,7 +62,6 @@ const InterviewPage = ({state,data,actions}) => {
             nextUrl: getIndex + 1 < items.length ? items[getIndex + 1]?.link: '/',
         }
     },[items,data.id]);
-    console.log(date)
     return (
         <>
             <Container>

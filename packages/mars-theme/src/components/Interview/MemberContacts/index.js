@@ -78,7 +78,7 @@ const MemberContacts = ({
          <div>
             <MemberName>{fullname}</MemberName>
             <MemberContainer>
-                <PublishDate datetime={date}>{dayjs(date).format('MMMM YYYY')}</PublishDate>
+                <PublishDate datetime={date}>{dayjs(date,'YYYY-MM-DDTHH:mm:ss').format('MMMM YYYY')}</PublishDate>
                 <MemberLink href={tagLink?.url} target="_blank">{tagLink?.title}</MemberLink>
             </MemberContainer>
          </div>
