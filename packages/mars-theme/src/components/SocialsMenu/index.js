@@ -40,7 +40,7 @@ const SocialsMenu = ({socials = []}) => {
             {
                 socials.map(({link,icon},index) => (
                     <MenuItem className="social-menu__item" key={index}>
-                        <a href={link.url} title={link.title}>
+                        <a href={link.url} title={link.title} target="_blank">
                             <FontAwesomeIcon icon={icon} />
                         </a>
                     </MenuItem>
