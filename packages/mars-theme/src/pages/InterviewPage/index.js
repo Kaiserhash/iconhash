@@ -1,4 +1,4 @@
-import React,{ useLayoutEffect, useMemo } from "react";
+import React,{ useEffect, useMemo } from "react";
 import {connect, styled} from "frontity";
 import InterviewNavigation from "../../components/Interview/InterviewNavigation";
 import InterviewBanner from "../../components/Interview/InterviewBanner";
@@ -38,7 +38,7 @@ const DesktopBlock = styled('div')({
     }
 });
 const InterviewPage = ({state,data,actions}) => {
-    useLayoutEffect(() => {
+    useEffect(() => {
         actions.source.fetch("/interviews");
     }, []);
     const { items = [] } = state.source.get("/interviews");

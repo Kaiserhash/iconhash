@@ -1,4 +1,4 @@
-import React, { useMemo,useState,useLayoutEffect } from "react";
+import React, { useMemo,useState,useEffect } from "react";
 import {styled} from "frontity";
 import {LazyLoadImage} from "react-lazy-load-image-component/src";
 import PropTypes from "prop-types";
@@ -73,7 +73,7 @@ const LoadMoreButton = styled('button')({
 const InterviewGallery = ({gallery: { list = [],title }}) => {
     const [perPage, setPerPage] = useState(6);
     const [galleryImages,setGalleryImages] = useState([]);
-    useLayoutEffect(() => {
+    useEffect(() => {
         setGalleryImages(list.map(({img}) => img).slice(0,perPage));
         return () => {
             setGalleryImages([]);
@@ -98,8 +98,8 @@ const InterviewGallery = ({gallery: { list = [],title }}) => {
              </FlexContainer>
              <GalleryContainer>
                  {
-                     galleryImages.map(({ ID = 0,url,title = 'image',width = 100 }) => (
-                         <Image  effect="blur" key={ID} src={url} alt={title} width={width}  />
+                     galleryImages.map(({ url,title = 'image',width = 100 },index) => (
+                         <Image  effect="blur" key={index} src={url} alt={title} width={width}  />
                      ))
                  }
              </GalleryContainer>
@@ -112,10 +112,10 @@ InterviewGallery.propTypes = {
     gallery: PropTypes.shape({
         title: PropTypes.string.isRequired,
         list: PropTypes.arrayOf(PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
-            width: PropTypes.number.isRequired,
-            height: PropTypes.number.isRequired,
+            title: PropTypes.string,
+            url: PropTypes.string,
+            width: PropTypes.number,
+            height: PropTypes.number,
         }).isRequired).isRequired
     }).isRequired
 };

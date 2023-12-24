@@ -62,32 +62,34 @@ const MemberContacts = ({
                                 tagLink = {},
                                 memberOfTheMonth = false,
                                 socials = [],
-                                date = ''
-                            }
-}) => (
-   <Container>
-     <MemberContainer>
-         {
-             memberOfTheMonth ?
-             <MemberAchiveImage
-                 alt={fullname}
-                 src={memberIcon}
-             />
-                 : null
-         }
-         <div>
-            <MemberName>{fullname}</MemberName>
+                            },
+                            date = new Date()
+}) => {
+    return (
+        <Container>
             <MemberContainer>
-                <PublishDate datetime={date}>{dayjs(date,'YYYY-MM-DDTHH:mm:ss').format('MMMM YYYY')}</PublishDate>
-                <MemberLink href={tagLink?.url} target="_blank">{tagLink?.title}</MemberLink>
+                {
+                    memberOfTheMonth ?
+                        <MemberAchiveImage
+                            alt={fullname}
+                            src={memberIcon}
+                        />
+                        : null
+                }
+                <div>
+                    <MemberName>{fullname}</MemberName>
+                    <MemberContainer>
+                        <PublishDate datetime={date}>{dayjs(date,'YYYY-MM-DDTHH:mm:ss').format('MMMM YYYY')}</PublishDate>
+                        <MemberLink href={tagLink?.url} target="_blank">{tagLink?.title}</MemberLink>
+                    </MemberContainer>
+                </div>
             </MemberContainer>
-         </div>
-     </MemberContainer>
-     <DesktopSocials>
-         <SocialsMenu socials={socials} />
-     </DesktopSocials>
-   </Container>
-);
+            <DesktopSocials>
+                <SocialsMenu socials={socials} />
+            </DesktopSocials>
+        </Container>
+    )
+};
 
 MemberContacts.propTypes = {
     authorAbout: PropTypes.shape({
@@ -100,11 +102,11 @@ MemberContacts.propTypes = {
         socials: PropTypes.arrayOf(
             PropTypes.shape({
                 icon: PropTypes.string.isRequired,
-                link: PropTypes.string.isRequired
-            })
-        ),
-        date: PropTypes.string.isRequired
-    }).isRequired
+                link: PropTypes.string
+            }).isRequired
+        ).isRequired,
+    }).isRequired,
+    date: PropTypes.string.isRequired
 }
 
 export default MemberContacts;

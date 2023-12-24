@@ -40,7 +40,7 @@ const SocialsMenu = ({socials = []}) => {
             {
                 socials.map(({link,icon},index) => (
                     <MenuItem className="social-menu__item" key={index}>
-                        <a href={link.url} title={link.title} target="_blank">
+                        <a href={link} target="_blank">
                             <FontAwesomeIcon icon={icon} />
                         </a>
                     </MenuItem>
@@ -54,10 +54,7 @@ SocialsMenu.propTypes = {
     socials: PropTypes.arrayOf(
         PropTypes.shape({
             icon: PropTypes.string.isRequired,
-            link: PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                title: PropTypes.string
-            }).isRequired
+            link: PropTypes.string.isRequired
         }).isRequired
     ).isRequired
 }

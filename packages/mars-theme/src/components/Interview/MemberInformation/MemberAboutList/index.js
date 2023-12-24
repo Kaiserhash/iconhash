@@ -85,7 +85,7 @@ const MemberAboutList = ({infoBlock: { country = '',countryIcon = '',city = '',p
                                 <AboutListTitle>{title}</AboutListTitle>
                             </div>
                         </AboutListContainer>
-                        { additionalIcon ? <ReactCountryFlag countryCode={additionalIcon} />: null }
+                        { additionalIcon ? <ReactCountryFlag countryCode={additionalIcon} svg />: null }
                     </AboutListItem>
                 ) )
             }
