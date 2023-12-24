@@ -1,4 +1,4 @@
-import React, { useMemo,useState,useEffect } from "react";
+import React, { useMemo,useState,useLayoutEffect } from "react";
 import {styled} from "frontity";
 import {LazyLoadImage} from "react-lazy-load-image-component/src";
 import PropTypes from "prop-types";
@@ -38,6 +38,9 @@ const GalleryContainer = styled('div')({
     gridGap: '8px',
     gridTemplateColumns: '100%',
     marginBottom: '25px',
+    '& span': {
+      width: '100% !important'
+    },
     '@media (min-width: 990px)': {
         gridGap: '34px',
         gridTemplateColumns: 'repeat(3,1fr)'
@@ -67,23 +70,23 @@ const LoadMoreButton = styled('button')({
     }
 });
 
-const InterviewGallery = ({gallery: { list = [],title }},scrollPosition) => {
+const InterviewGallery = ({gallery: { list = [],title }}) => {
     const [perPage, setPerPage] = useState(6);
     const [galleryImages,setGalleryImages] = useState([]);
-    useEffect(() => {
-        setGalleryImages(list.slice(0,perPage));
+    useLayoutEffect(() => {
+        setGalleryImages(list.map(({img}) => img).slice(0,perPage));
         return () => {
             setGalleryImages([]);
             setPerPage(6);
         }
-    },[galleryImages]);
+    },[]);
     const totalImages = useMemo(() => galleryImages.length,[galleryImages]);
     const loadMoreHandler = () => {
        const calcPerPage = perPage + 6;
        setPerPage(calcPerPage);
-       setGalleryImages([
-           ...list,
-           ...list.slice(galleryImages.length,calcPerPage)
+       setGalleryImages(prev =>[
+           ...prev,
+           ...list.map(({img}) => img).slice(galleryImages.length,calcPerPage)
        ]);
     };
     const showButton = useMemo(() => perPage < list.length,[perPage]);
@@ -95,8 +98,8 @@ const InterviewGallery = ({gallery: { list = [],title }},scrollPosition) => {
              </FlexContainer>
              <GalleryContainer>
                  {
-                     galleryImages.map(({ img: { ID = 0,url,title = 'image',width = 100,height = 100 } },index) => (
-                         <Image scrollPosition={scrollPosition} effect="blur" key={ID} src={url} alt={title} width={width} height={height}  />
+                     galleryImages.map(({ ID = 0,url,title = 'image',width = 100 }) => (
+                         <Image  effect="blur" key={ID} src={url} alt={title} width={width}  />
                      ))
                  }
              </GalleryContainer>
@@ -117,4 +120,4 @@ InterviewGallery.propTypes = {
     }).isRequired
 };
 
-export default trackWindowScroll(InterviewGallery);
+export default InterviewGallery;
