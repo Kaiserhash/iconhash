@@ -79,7 +79,7 @@ const InterviewGallery = ({gallery: { list = [],title }}) => {
             setGalleryImages([]);
             setPerPage(6);
         }
-    },[]);
+    },[list]);
     const totalImages = useMemo(() => galleryImages.length,[galleryImages]);
     const loadMoreHandler = () => {
        const calcPerPage = perPage + 6;
