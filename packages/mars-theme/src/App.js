@@ -17,15 +17,15 @@ const Main = styled('main')({
 })
 const App = ({ state }) => {
     // Get information about the current URL.
-    const data = state.source.get(state.router.link);
+    const data = state?.source?.get(state?.router?.link);
     return (
         <>
             <Global styles={globalStyles} />
             <Header />
             <Main>
                 <Switch>
-                    <HomePage when={data.isHome} />
-                    <InterviewPage when={data.isInterviews} data={data} />
+                    <HomePage when={data?.isHome} />
+                    <InterviewPage when={data?.isInterviews} data={data} />
                 </Switch>
             </Main>
             <Footer />
