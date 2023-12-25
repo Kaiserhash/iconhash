@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "frontity dev",
-    "build": "frontity build --public-path https://iconhash.vercel.app/static",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider;frontity build --public-path https://iconhash.vercel.app/static",
     "serve": "frontity serve --https --port 3038"
   },
   "engines": {
