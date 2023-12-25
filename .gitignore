@@ -60,7 +60,6 @@ build
 dist
 .idea
 .vercel
-yarn.lock
 package-lock.json
 db
 /wp-content/uploads
