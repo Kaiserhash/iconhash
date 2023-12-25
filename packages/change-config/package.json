@@ -5,7 +5,7 @@
   "keywords": ["frontity", "frontity-theme"],
   "license": "Apache-2.0",
   "dependencies": {
-    "frontity": "~1.17.2"
+    "frontity": "~1.16.1"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^5.0.0",
