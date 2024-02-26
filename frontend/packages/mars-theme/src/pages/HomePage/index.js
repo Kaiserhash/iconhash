@@ -58,7 +58,9 @@ const CustomPagination = styled(Pagination)`
       }
     }
   }
-  
+  & .ant-pagination li {
+    margin-right: 4px;
+  }
   & .ant-pagination-item{
     border-radius: 11px !important;
     border: 1px solid #EEF0F9 !important;
