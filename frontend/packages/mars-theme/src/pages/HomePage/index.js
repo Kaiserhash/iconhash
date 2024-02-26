@@ -64,8 +64,8 @@ const CustomPagination = styled(Pagination)`
     border: 1px solid #EEF0F9 !important;
     background: #FFF !important;
     box-shadow: 0px 4px 17px 0px rgba(197, 203, 235, 0.09) !important;
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
