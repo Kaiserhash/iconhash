@@ -93,7 +93,8 @@ const getPaginatedInterviewsHandler = {
               a.push({
                 key: `authorInfo_${name}`,
                 value: value.join(','),
-                compare: 'BETWEEN'
+                compare: 'BETWEEN',
+                type: 'NUMERIC'
               });
             }
           } else {
@@ -119,9 +120,10 @@ const getPaginatedInterviewsHandler = {
           })
         },
       });
-      const { dataList = [],totalPages = 0 } = await response.json();
+      const { dataList = [],totalPages = 0, totalItems = 0 } = await response.json();
       state.homePage.dataList = dataList;
       state.homePage.totalPages = totalPages;
+      state.homePage.totalItems = totalItems;
     } catch (e) {
       console.error(e);
     }
@@ -232,7 +234,7 @@ const marsTheme = {
     homePage: {
       onChangePage: ({state,actions}) => async (currentPage = 1) => {
         state.homePage.currentPage = currentPage;
-        await actions.source.fetch("get-paginated-interviews");
+        await actions.source.fetch("get-paginated-interviews", { force: true });
       },
       acceptFilters: ({state,actions}) => async ({
                                                     countryFilters = [],
@@ -251,7 +253,7 @@ const marsTheme = {
         state.homePage.filters.personalChar_hairsColor = hairsFilters;
         state.homePage.filters.personalChar_weight = weightFilters;
         state.homePage.filters.personalChar_height = heightFilters;
-        await actions.source.fetch("get-paginated-interviews");
+        await actions.source.fetch("get-paginated-interviews", { force: true });
       },
       resetFilters: ({ state, actions }) => async () => {
         state.homePage.currentPage = 1;
@@ -262,7 +264,7 @@ const marsTheme = {
         state.homePage.filters.personalChar_eyesColor = [];
         state.homePage.filters.personalChar_weight= [0,0];
         state.homePage.filters.personalChar_height = [0,0];
-        await actions.source.fetch("get-paginated-interviews");
+        await actions.source.fetch("get-paginated-interviews", { force: true });
       }
     }
   },

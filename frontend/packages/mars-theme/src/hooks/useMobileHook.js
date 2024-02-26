@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {theme} from "../constants/theme";
-const isMobileHook = () => {
+const useMobileHook = () => {
     const [isMobile, setIsMobile] = useState(false)
     const handleResize = () => {
         if(window) {
@@ -22,4 +22,4 @@ const isMobileHook = () => {
     return isMobile;
 }
 
-export default isMobileHook;
+export default useMobileHook;

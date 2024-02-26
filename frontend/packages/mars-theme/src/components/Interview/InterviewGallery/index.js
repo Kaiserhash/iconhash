@@ -1,6 +1,6 @@
 import React, { useMemo,useState,useEffect } from "react";
 import {styled} from "frontity";
-import {LazyLoadImage} from "react-lazy-load-image-component/src";
+import {LazyLoadImage, trackWindowScroll} from "react-lazy-load-image-component";
 import PropTypes from "prop-types";
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import {theme} from "../../../constants/theme";
@@ -50,7 +50,7 @@ const GalleryContainer = styled('div')({
 
 const Image = styled(LazyLoadImage)({
     display: 'block',
-    width: '100%',
+    width: '100% !important',
     height: '100%',
     objectFit: 'cover',
     objectPosition: 'center',
@@ -71,7 +71,7 @@ const LoadMoreButton = styled('button')({
     }
 });
 
-const InterviewGallery = ({gallery: { list = [],title }}) => {
+const InterviewGallery = ({scrollPosition,gallery: { list = [],title }}) => {
     const [perPage, setPerPage] = useState(6);
     const [galleryImages,setGalleryImages] = useState([]);
     useEffect(() => {
@@ -100,7 +100,7 @@ const InterviewGallery = ({gallery: { list = [],title }}) => {
              <GalleryContainer>
                  {
                      galleryImages.map(({ url,title = 'image',width = 100 },index) => (
-                         <Image  effect="blur" key={index} src={url} alt={title} width={width}  />
+                         <Image scrollPosition={scrollPosition}  effect="blur" key={index} src={url} alt={title} width={width}  />
                      ))
                  }
              </GalleryContainer>
@@ -121,4 +121,4 @@ InterviewGallery.propTypes = {
     }).isRequired
 };
 
-export default InterviewGallery;
+export default trackWindowScroll(InterviewGallery);

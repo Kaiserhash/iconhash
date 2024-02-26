@@ -4,8 +4,7 @@ import {theme} from "../../../constants/theme";
 import {styled} from "frontity";
 import arrowDown from '../../../../static/arrow.svg';
 import filterIcon from '../../../../static/filter.svg';
-import {LazyLoadImage} from "react-lazy-load-image-component/src";
-import isMobileHook from "../../../hooks/isMobileHook";
+import {LazyLoadImage , trackWindowScroll} from "react-lazy-load-image-component";
 
 const CustomCollapse = styled(Collapse)`
   padding: 18px 13px;
@@ -21,6 +20,7 @@ const CustomCollapse = styled(Collapse)`
   @media (min-width: ${theme.screens.lg}) {
     padding: 20px 19px;
     order: 2;
+    height: max-content;
     .ant-collapse-header {
       cursor: inherit !important;
     }
@@ -39,7 +39,7 @@ const Header = styled.div`
 `
 
 const FilterIcon = styled(LazyLoadImage)`
-  width: 20px;
+  width: 20px !important;
   height: 20px;
   @media (min-width: ${theme.screens.lg}) {
     display: none;
@@ -70,14 +70,13 @@ const CustomBadge = styled(Badge)`
   }
 `
 
-const HomeFiltersWrapper = ({children,totalAcceptedFilters = 0}) => {
-    const isMobile = isMobileHook();
+const HomeFiltersWrapper = ({children,totalAcceptedFilters = 0,isMobile = false,scrollPosition}) => {
     const items = useMemo(() => [
         {
             key: '1',
             label: (
                 <Header>
-                    <FilterIcon src={filterIcon} alt="filter" />
+                    <FilterIcon scrollPosition={scrollPosition} width={20} height={20} src={filterIcon} alt="filter" />
                     <FilterTitle>Filters</FilterTitle>
                     <CustomBadge>Applied: {totalAcceptedFilters}</CustomBadge>
                 </Header>
@@ -87,10 +86,10 @@ const HomeFiltersWrapper = ({children,totalAcceptedFilters = 0}) => {
             collapsible: isMobile ? 'header': 'disabled'
     }],[isMobile,totalAcceptedFilters]);
     return (
-        <CustomCollapse defaultActiveKey={['1']} expandIcon={({ isActive }) => <LazyLoadImage src={arrowDown} style={{transform: isActive ? '180deg': '0deg'}} alt="arrow" />}  ghost items={items} expandIconPosition="end"  />
+        <CustomCollapse defaultActiveKey={['1']} expandIcon={() => <LazyLoadImage src={arrowDown}  alt="arrow" />}  ghost items={items} expandIconPosition="end"  />
     )
 }
 
 
 
-export default HomeFiltersWrapper
+export default trackWindowScroll(HomeFiltersWrapper);

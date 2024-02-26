@@ -4,7 +4,7 @@ import {connect, styled} from "frontity";
 import Title from "../Title";
 import SocialsMenu from "../SocialsMenu";
 import {theme} from "../../constants/theme";
-import isMobileHook from "../../hooks/isMobileHook";
+import useMobileHook from "../../hooks/useMobileHook";
 
 const FooterMobileContainer = styled('footer')`
   .container {
@@ -65,7 +65,7 @@ const FooterDesktop = ({title = '', socials = [], copyright = ''}) => (
 )
 
 const Footer = ({state}) => {
-  const isMobile = isMobileHook();
+  const isMobile = useMobileHook();
   const { acf: { footerSocialsMenu = [], copyright = '', footerTitle = ''} } = state.source.get("acf-options-page");
   return (
       isMobile ? <FooterMobile copyright={copyright} socials={footerSocialsMenu} title={footerTitle} />: <FooterDesktop copyright={copyright} socials={footerSocialsMenu} title={footerTitle} />

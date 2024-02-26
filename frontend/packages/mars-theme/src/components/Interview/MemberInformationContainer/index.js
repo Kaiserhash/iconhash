@@ -2,7 +2,7 @@ import React from "react";
 import {Collapse} from "antd";
 import {InfoCircleOutlined} from "@ant-design/icons";
 import {styled} from "frontity";
-import isMobileHook from "../../../hooks/isMobileHook";
+import useMobileHook from "../../../hooks/useMobileHook";
 const { Panel } = Collapse;
 const CollapsePanel = styled(Panel)({
     '& .ant-collapse-expand-icon': {
@@ -17,7 +17,7 @@ const CollapsePanel = styled(Panel)({
     }
 })
 const MemberInformationContainer = (Component) => (props) => {
-    const isMobile = isMobileHook();
+    const isMobile = useMobileHook();
     return isMobile ? (
         <Collapse
             defaultActiveKey={['1']}

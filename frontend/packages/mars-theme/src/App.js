@@ -50,6 +50,7 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   #root {
+    overflow: hidden;
     font-weight: 500;
     font-size: 15px;
     font-family: 'Inter', sans-serif;

@@ -1,7 +1,7 @@
 import React from "react";
 import MemberInformationContainer from "../MemberInformationContainer";
 import {styled} from "frontity";
-import {LazyLoadImage} from "react-lazy-load-image-component/src";
+import {LazyLoadImage, trackWindowScroll} from "react-lazy-load-image-component";
 import MemberAboutList from "./MemberAboutList";
 import MemberCharsList from "./MemberCharsList";
 import PropTypes from "prop-types";
@@ -22,13 +22,13 @@ const AvatarContainer = styled('div')({
 });
 
 const Avatar = styled(LazyLoadImage)({
-    width: '76px',
+    width: '76px !important',
     height: '76px',
     borderRadius: '50%',
     objectFit: 'cover',
     objectPosition: 'center',
     [`@media (min-width: ${theme.screens.lg})`]: {
-        width: '184px',
+        width: '184px !important',
         height: '184px',
     }
 });
@@ -56,7 +56,7 @@ const Subtitle = styled('h5')({
 });
 
 
-const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={} } }) => (
+const MemberInformation = ({ scrollPosition,authorInfo: { avatar,infoBlock = {},personalChar={} } }) => (
    <Container>
        {
            Object.values(avatar || {}).length &&
@@ -67,6 +67,7 @@ const MemberInformation = ({ authorInfo: { avatar,infoBlock = {},personalChar={}
                        height={avatar.height}
                        src={avatar.url}
                        width={avatar.width}
+                       scrollPosition={scrollPosition}
                    />
                </AvatarContainer>
            )
@@ -114,4 +115,4 @@ MemberInformation.propTypes = {
     }).isRequired
 };
 
-export default MemberInformationContainer(MemberInformation);
+export default trackWindowScroll(MemberInformationContainer(MemberInformation));

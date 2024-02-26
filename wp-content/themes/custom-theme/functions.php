@@ -29,6 +29,7 @@ function my_acf_cpt_save_folder( $path ) {
 add_filter('acf/json/save_paths/type=acf-post-type', 'my_acf_cpt_save_folder');
 
 add_filter('rest_interviews_query', 'filter_interviews_by_acf_fields', 10, 2);
+add_filter('rest_paginated_interviews_query', 'filter_interviews_by_acf_fields', 10, 2);
 
 function filter_interviews_by_acf_fields($args, $request) {
     $params = $request->get_params();
@@ -39,7 +40,7 @@ function filter_interviews_by_acf_fields($args, $request) {
         $meta_query = array('relation' => 'AND');
 
         foreach ($acf_fields as $field) {
-            $value = (strpos($field['value'], ',') !== false) ? explode(',', $field['value']) : $field['value'];
+            $value = (strpos($field['value'], ',') !== false) || (isset($field['compare']) && $field['compare'] === "IN") ? explode(',', $field['value']) : $field['value'];
             $meta_query[] = array(
                 'key' => $field['key'],
                 'value' => $value,
@@ -136,24 +137,48 @@ function get_paginated_interviews($request) {
     );
 
     $query_params = $request->get_query_params();
+    $args = filter_interviews_by_acf_fields($args, $request);
     $args = array_merge($args, $query_params);
-
-    // Выполняем запрос
     $query = new WP_Query($args);
     $totalArgs = array(
         'post_type' => 'interviews',
     );
     unset($query_params['per_page']);
     unset($query_params['page']);
+    $totalArgs = filter_interviews_by_acf_fields($totalArgs, $request);
     $totalArgs = array_merge($totalArgs, $query_params);
     $queryTotal = new WP_Query($totalArgs);
     $total_posts = $queryTotal->found_posts;
     $totalPages = ceil($total_posts / $args['posts_per_page']);
+    $dataList = array();
+    foreach ($query->posts as $post) {
+        $post_id = $post->ID;
+        $acf_fields = get_fields($post_id);
+        $post_id = $post->ID;
+        $post_title = $post->post_title;
+        $post_link = get_permalink($post);
+        $post_date = $post->post_date;
+        $post_date_gmt = $post->post_date_gmt;
+        $post_modified = $post->post_modified;
+        $post_modified_gmt = $post->post_modified_gmt;
 
+        $formatted_post = array(
+            'acf' => $acf_fields,
+            'id' => $post_id,
+            'title' => $post_title,
+            'link' => $post_link,
+            'date' => $post_date,
+            'date_gmt' => $post_date_gmt,
+            'modified' => $post_modified,
+            'modified_gmt' => $post_modified_gmt,
+        );
+
+        $dataList[] = $formatted_post;
+    }
     wp_reset_postdata();
 
     return rest_ensure_response(array(
-        'dataList' => $query->posts,
+        'dataList' => $dataList,
         'totalPages' => $totalPages,
         'totalItems' => $total_posts
     ));

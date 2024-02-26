@@ -1,6 +1,6 @@
 import {styled} from "frontity";
 import {theme} from "../../../constants/theme";
-import {LazyLoadImage} from "react-lazy-load-image-component/src";
+import {LazyLoadImage, trackWindowScroll} from "react-lazy-load-image-component";
 import PropTypes from "prop-types";
 import memberIcon from "../../../../static/MemberOfTheMonth.svg";
 import Container from "../../Container";
@@ -26,7 +26,7 @@ const ImageWrapper = styled.div`
 `
 
 const MainImage = styled(LazyLoadImage)`
-   width: 100%;
+   width: 100% !important;
    object-fit: cover;
    object-position: center;
    height: 458px;
@@ -52,13 +52,13 @@ const AchievementsBlock = styled.div`
 `
 
 const MemberOfTheMonthImage = styled(LazyLoadImage)`
-  width: 78px;
+  width: 78px !important;
   height: 62px;
   object-fit: cover;
   object-position: center;
   margin: 18px;
   @media (min-width: ${theme.screens.lg}) {
-    width: 128px;
+    width: 128px !important;
     height: 100px;
     margin: 30px 50px;
   }
@@ -67,7 +67,7 @@ const MemberOfTheMonthImage = styled(LazyLoadImage)`
 const CountryImage = styled(LazyLoadImage)`
   max-width: 148px;
   max-height: 200px;
-  width: 100%;
+  width: 100% !important;
   @media (min-width: ${theme.screens.lg}) {
     max-width: 232px;
     max-height: 312px;
@@ -154,6 +154,7 @@ const InterviewLink = styled(Link)`
 `
 
 const HomeBanner = ({
+ scrollPosition,
  link,
  acf: {
     mainBanner,
@@ -170,6 +171,7 @@ const HomeBanner = ({
                            height={mainBanner?.height}
                            src={mainBanner?.url}
                            width={mainBanner?.width}
+                           scrollPosition={scrollPosition}
                        />
                        <AchievementsBlock>
                            {
@@ -179,6 +181,7 @@ const HomeBanner = ({
                                        height={countryImg?.height}
                                        src={countryImg?.url}
                                        width={countryImg?.width}
+                                       scrollPosition={scrollPosition}
                                    />
                                ): null
                            }
@@ -186,6 +189,7 @@ const HomeBanner = ({
                                src={memberIcon}
                                width={78}
                                height={62}
+                               scrollPosition={scrollPosition}
                            />
                        </AchievementsBlock>
                    </ImageWrapper>
@@ -202,7 +206,7 @@ const HomeBanner = ({
                           </CountryInfo>
                      </InfoLeftContainer>
                      <InfoRightContainer>
-                         <InterviewLink href={link}>Winer's interview</InterviewLink>
+                         <InterviewLink link={link}>Winer's interview</InterviewLink>
                      </InfoRightContainer>
                    </InfoWrapper>
                </Container>
@@ -236,4 +240,4 @@ HomeBanner.propTypes = {
         }).isRequired
     }).isRequired
 }
-export default HomeBanner;
+export default trackWindowScroll(HomeBanner);

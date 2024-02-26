@@ -1,6 +1,6 @@
 import React from "react";
 import {styled} from "frontity";
-import {LazyLoadImage} from "react-lazy-load-image-component/src";
+import {LazyLoadImage, trackWindowScroll} from "react-lazy-load-image-component";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import SocialsMenu from "../../SocialsMenu";
@@ -22,6 +22,7 @@ const MemberContainer = styled('div')({
 
 const MemberAchiveImage = styled(LazyLoadImage)({
     maxWidth: '98px',
+    width: '100% !important',
     maxHeight: '74px',
     marginRight: '15px'
 });
@@ -58,6 +59,7 @@ const DesktopSocials = styled('div')({
 });
 
 const MemberContacts = ({
+                            scrollPosition,
                             authorAbout: {
                                 fullname = '',
                                 tagLink = {},
@@ -72,8 +74,11 @@ const MemberContacts = ({
                 {
                     memberOfTheMonth ?
                         <MemberAchiveImage
+                            scrollPosition={scrollPosition}
                             alt={fullname}
                             src={memberIcon}
+                            width={98}
+                            height={74}
                         />
                         : null
                 }
@@ -110,4 +115,4 @@ MemberContacts.propTypes = {
     date: PropTypes.string.isRequired
 }
 
-export default MemberContacts;
+export default trackWindowScroll(MemberContacts);

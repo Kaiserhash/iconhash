@@ -90,6 +90,7 @@ const ResetButton = styled(Button)`
 `;
 
 const HomeFilters = ({
+                         isMobile = false,
                          actions,
                          filtersList: {
                              city = [],
@@ -151,7 +152,7 @@ const HomeFilters = ({
         }
     }
     return (
-        <HomeFiltersWrapper totalAcceptedFilters={totalAppliedFilters}>
+        <HomeFiltersWrapper totalAcceptedFilters={totalAppliedFilters} isMobile={isMobile}>
          <Form form={form} onFinish={onFormSubmit}>
              <ItemContainer>
                  <CustomLabel>Country</CustomLabel>
@@ -217,6 +218,7 @@ const HomeFilters = ({
 }
 
 HomeFilters.propTypes = {
+    isMobile: PropTypes.bool.isRequired,
     actions: PropTypes.object.isRequired,
     filtersList: PropTypes.shape({
         city: PropTypes.arrayOf(PropTypes.string).isRequired,
