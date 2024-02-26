@@ -15,6 +15,15 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
+  "vercel": {
+    "builds": [
+      {
+        "src": "frontend/package.json",
+        "use": "@vercel/static-build",
+        "config": { "rootDirectory": "frontend" }
+      }
+    ]
+  },
   "prettier": {},
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
