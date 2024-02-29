@@ -12,6 +12,8 @@ const SubContainer = styled.div`
    margin-bottom: 15px;
    @media (min-width: ${theme.screens.lg}) {
      margin-bottom: 94px;
+     border-top: 2px solid #89A0B8;
+     margin-top: 3px;
    }
 `
 
@@ -98,6 +100,10 @@ const InfoLeftContainer = styled.div`
   display: grid;
   grid-template-columns: 100%;
   grid-gap: 10px;
+  @media (min-width: ${theme.screens.lg}) {
+    grid-gap: 22px;
+    grid-template-columns: 1.5fr 1fr;
+  }
 `
 
 const InfoRightContainer = styled.div`
