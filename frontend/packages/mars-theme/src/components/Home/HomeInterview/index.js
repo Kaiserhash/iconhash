@@ -14,6 +14,10 @@ const Container = styled.div`
   background: var(--White, #FFF);
   box-shadow: 0px 4px 17px 0px rgba(197, 203, 235, 0.09);
   height: max-content;
+  border: 1px solid transparent;
+  &:hover {
+    border: 1px solid var(--Primary, #293BDC);
+  }
 `;
 
 const ImageContainer = styled.div`
