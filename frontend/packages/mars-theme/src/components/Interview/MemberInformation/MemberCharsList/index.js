@@ -29,7 +29,7 @@ const CharsListSubtitle = styled('div')({
 });
 
 const CharsListTitle = styled('div')({
-    color: '#24313E',
+    color: theme.colors.black,
     fontWeight: 600,
     fontSize: '14px',
     [`@media (min-width: ${theme.screens.lg})`]: {

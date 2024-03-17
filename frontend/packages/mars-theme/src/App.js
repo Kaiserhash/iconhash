@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import InterviewPage from "./pages/InterviewPage";
 import {theme} from "./constants/theme";
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -57,7 +58,7 @@ const globalStyles = css`
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    color: #24313E;
+    color: ${theme.colors.black};
   }
   @media (min-width: ${theme.screens.lg}){
     #root {

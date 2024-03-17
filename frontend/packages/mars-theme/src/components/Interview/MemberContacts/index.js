@@ -28,7 +28,7 @@ const MemberAchiveImage = styled(LazyLoadImage)({
 });
 
 const MemberName = styled('h1')({
-    color: '#24313E',
+    color: theme.colors.black,
     fontWeight: 700,
     fontSize: '20px',
     marginBottom: '2px',
@@ -48,7 +48,7 @@ const PublishDate = styled('time')({
 
 const MemberLink = styled('a')({
     fontWeight: 600,
-    color: '#293BDC',
+    color: theme.colors.blue,
     textDecoration: 'none'
 });
 

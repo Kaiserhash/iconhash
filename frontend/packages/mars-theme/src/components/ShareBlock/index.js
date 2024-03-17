@@ -15,7 +15,7 @@ const ShareContainer = styled('div')({
     },
     '& .social-menu__item a': {
         backgroundColor: '#fff',
-        color: '#293BDC'
+        color: theme.colors.blue
     },
     [`@media (min-width: ${theme.screens.lg})`]: {
         padding: '28px',

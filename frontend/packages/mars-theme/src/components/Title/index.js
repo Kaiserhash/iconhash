@@ -9,7 +9,7 @@ const TitleLink = styled(Link)({
     fontFamily: 'Montserrat, sans-serif',
     fontStyle: 'italic',
     fontWeight: 800,
-    color: '#24313E',
+    color: theme.colors.black,
     fontSize: '20px',
     textTransform: 'uppercase',
     textDecoration: 'none',

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Form, Input, Slider} from "antd";
 import PropTypes from "prop-types";
 import {styled} from "frontity";
+import {theme} from "../../../constants/theme";
 
 const InputContainers = styled.div`
   display: grid;
@@ -58,11 +59,11 @@ const CustomSlider = styled(Slider)`
     height: 12px;
     border-radius: 2px;
     border: 1px solid #FFF;
-    background: var(--Primary, #293BDC);
+    background: ${theme.colors.blue};
     box-shadow: 0px 2px 6px 0px rgba(29, 35, 91, 0.36);
   }
   & .ant-slider-track {
-    background: var(--Primary, #293BDC);
+    background: ${theme.colors.blue};
   }
 `
 

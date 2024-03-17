@@ -10,7 +10,7 @@ const Container = styled.div`
 `
 
 const Title = styled('h2')`
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.black};
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -24,7 +24,7 @@ const Title = styled('h2')`
 const CustomBadge = styled(Badge)`
   .ant-badge-count {
     background: var(--Primary-light, rgba(41, 59, 220, 0.06));
-    color: var(--Primary, #293BDC);
+    color: ${theme.colors.blue};
     font-size: 14px;
     font-style: normal;
     font-weight: 700;

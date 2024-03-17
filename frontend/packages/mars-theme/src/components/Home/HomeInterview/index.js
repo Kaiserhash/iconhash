@@ -16,7 +16,7 @@ const Container = styled.div`
   height: max-content;
   border: 1px solid transparent;
   &:hover {
-    border: 1px solid var(--Primary, #293BDC);
+    border: 1px solid ${theme.colors.blue};
   }
 `;
 
@@ -106,7 +106,7 @@ const AboutContainer = styled.div`
 `;
 
 const Title = styled('h4')`
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.black};
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -127,7 +127,7 @@ const TagInfo = styled.div`
   }
   & .link {
     text-decoration: none;
-    color: var(--Primary, #293BDC);
+    color: ${theme.colors.blue};
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -150,7 +150,7 @@ const SocialsMenuContainer = styled.div`
 `;
 
 const DateBlock = styled.time`
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.black};
   font-size: 13px;
   font-style: normal;
   font-weight: 600;
@@ -217,7 +217,7 @@ const InfoItem = styled.div`
    font-weight: 500;
  }
  & .value {
-   color: var(--etxt, #24313E);
+   color: ${theme.colors.black};
    font-size: 14px;
    font-style: normal;
    font-weight: 600;
@@ -240,9 +240,9 @@ const CustomLink = styled(Link)`
   display: block;
   padding: 14px;
   border-radius: 76px;
-  border: 1px solid var(--Light-1, #EAEEF1);
+  background: ${theme.colors.blue};
   text-align: center;
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.white};
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

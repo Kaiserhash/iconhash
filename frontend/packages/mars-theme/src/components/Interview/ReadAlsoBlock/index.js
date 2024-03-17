@@ -1,9 +1,10 @@
 import React from 'react';
 import {styled} from "frontity";
 import PropTypes from "prop-types";
+import {theme} from "../../../constants/theme";
 
 const Container = styled('div')({
-    borderLeft: '6px solid #293BDC',
+    borderLeft: `6px solid ${theme.colors.blue}`,
     paddingLeft: '15px',
     fontWeight: 600,
     marginBottom: '15px'
@@ -15,7 +16,7 @@ const Title = styled('div')({
 });
 const LinkPage = styled('a')({
     display: 'inline-block',
-    color: '#293BDC',
+    color: theme.colors.blue,
     textDecoration: 'none'
 })
 const ReadAlsoBlock = ({readAlso: { title = '', page }}) => (

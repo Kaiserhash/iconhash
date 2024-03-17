@@ -28,7 +28,7 @@ const CustomSelect = styled(Select)`
     padding: 5px;
   }
   & .ant-select-selection-item-content {
-    color: var(--Primary, #293BDC);
+    color: ${theme.colors.blue};
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -60,7 +60,7 @@ const SubmitButton = styled(Button)`
   align-items: center;
   justify-content: center;
   border-radius: 76px;
-  background: var(--Primary, #293BDC);
+  background: ${theme.colors.blue};
   color: var(--White, #FFF);
   font-size: 15px;
   font-style: normal;

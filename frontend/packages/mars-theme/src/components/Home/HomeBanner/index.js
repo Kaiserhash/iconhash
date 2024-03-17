@@ -113,12 +113,12 @@ const InfoRightContainer = styled.div`
 `
 
 const Title = styled('h2')`
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.black};
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   @media (min-width: ${theme.screens.lg}) {
-    color: var(--etxt, #24313E);
+    color: ${theme.colors.black};
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 26px;
   }

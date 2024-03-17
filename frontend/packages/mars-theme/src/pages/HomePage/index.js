@@ -73,7 +73,7 @@ const CustomPagination = styled(Pagination)`
     align-items: center;
     & a{
       padding: 0 !important;
-      color: var(--etxt, #24313E);
+      color: ${theme.colors.black};
       font-size: 16px;
       font-style: normal;
       font-weight: 600;
@@ -85,7 +85,7 @@ const CustomPagination = styled(Pagination)`
       }
     }
     &.ant-pagination-item-active {
-      background: var(--etxt, #24313E) !important;
+      background: ${theme.colors.black} !important;
       & a {
         color: #fff;
       }

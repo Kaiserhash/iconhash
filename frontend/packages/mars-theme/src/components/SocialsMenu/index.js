@@ -27,6 +27,12 @@ const MenuItem = styled('li')({
         borderRadius: '7px',
         color: '#85859B',
         textDecoration: 'none',
+        transition: 'all 500ms ease-in-out',
+        border: '1px solid transparent',
+        '&:hover': {
+            transform: 'scale(1.1)',
+            borderColor: theme.colors.blue
+        },
         [`@media (min-width: ${theme.screens.lg})`]: {
             width: '32px',
             height: '32px',

@@ -13,7 +13,7 @@ const Content = styled('div')({
    height: 'auto'
  },
  'blockquote': {
-    borderLeft: '6px solid #293BDC',
+    borderLeft: `6px solid ${theme.colors.blue}`,
     fontSize: '15px',
     fontWeight: 600,
     paddingLeft: '15px',

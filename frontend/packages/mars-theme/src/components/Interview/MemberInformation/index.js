@@ -34,7 +34,7 @@ const Avatar = styled(LazyLoadImage)({
 });
 
 const Title = styled('h4')({
-    color: '#24313E',
+    color: theme.colors.black,
     textAlign: 'center',
     marginBottom: '17px',
     fontWeight: 700,

@@ -3,6 +3,7 @@ import {styled} from "frontity";
 import Link from "@frontity/components/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
+import {theme} from "../../../constants/theme";
 
 const Container = styled('div')({
     display: 'flex',
@@ -18,7 +19,7 @@ const ButtonLink = styled(Link)({
     fontSize: '14px',
     lineHeight: '17px',
     textDecoration: 'none',
-    color: '#24313E'
+    color: theme.colors.black
 })
 
 const InterviewNavigation = ({prevUrl,nextUrl}) => {

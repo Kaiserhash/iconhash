@@ -2,8 +2,8 @@ import React, { useMemo,useState,useEffect } from "react";
 import {styled} from "frontity";
 import {LazyLoadImage, trackWindowScroll} from "react-lazy-load-image-component";
 import PropTypes from "prop-types";
-import 'react-lazy-load-image-component/src/effects/opacity.css';
 import {theme} from "../../../constants/theme";
+import Fancybox from "../../Fancybox/Fancybox";
 const Container = styled('div')({
     padding: '30px 0'
 });
@@ -15,7 +15,7 @@ const FlexContainer = styled('div')({
 });
 
 const Title = styled('h2')({
-    color: '#24313E',
+    color: theme.colors.black,
     fontWeight: 700,
     fontSize: '22px',
     marginRight: '15px',
@@ -31,21 +31,24 @@ const CountImages = styled('span')({
     fontWeight: 700,
     background: 'rgba(41, 59, 220, 0.06)',
     borderRadius: '8px',
-    color: '#293BDC'
+    color: theme.colors.blue
 });
 
 const GalleryContainer = styled('div')({
-    display: 'grid',
-    gridGap: '8px',
-    gridTemplateColumns: '100%',
-    marginBottom: '25px',
-    '& span': {
-      width: '100% !important'
-    },
-    [`@media (min-width: ${theme.screens.lg})`]: {
-        gridGap: '34px',
-        gridTemplateColumns: 'repeat(3,1fr)'
+    '& .galleryList': {
+        display: 'grid',
+        gridGap: '8px',
+        gridTemplateColumns: '100%',
+        marginBottom: '25px',
+        '& span': {
+            width: '100% !important'
+        },
+        [`@media (min-width: ${theme.screens.lg})`]: {
+            gridGap: '34px',
+            gridTemplateColumns: 'repeat(3,1fr)'
+        }
     }
+
 });
 
 const Image = styled(LazyLoadImage)({
@@ -98,12 +101,24 @@ const InterviewGallery = ({scrollPosition,gallery: { list = [],title }}) => {
                  <CountImages>{totalImages}</CountImages>
              </FlexContainer>
              <GalleryContainer>
-                 {
-                     galleryImages.map(({ url,title = 'image',width = 100 },index) => (
-                         <Image scrollPosition={scrollPosition}  effect="blur" key={index} src={url} alt={title} width={width}  />
-                     ))
-                 }
+                 <Fancybox
+                     options={{
+                         Carousel: {
+                             infinite: false,
+                         },
+                     }}
+                     className="galleryList"
+                 >
+                     {
+                         galleryImages.map(({ url,title = 'image',width = 100 },index) => (
+                             <a data-fancybox="gallery" key={index} href={url}>
+                                 <Image scrollPosition={scrollPosition}  effect="blur"  src={url} alt={title} width={width}  />
+                             </a>
+                         ))
+                     }
+                 </Fancybox>
              </GalleryContainer>
+
              {showButton ? <LoadMoreButton type="button" onClick={() => loadMoreHandler()}>Show more</LoadMoreButton>: null}
          </Container>
     )

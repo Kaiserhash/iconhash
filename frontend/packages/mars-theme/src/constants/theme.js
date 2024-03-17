@@ -14,5 +14,11 @@ export const theme= {
 
         '2xl': '1536px',
         // => @media (min-width: 1536px) { ... }
+    },
+    colors: {
+        white: '#fff',
+        blue: '#293BDC',
+        black: '#24313E',
+        lightGrey: '#85859B'
     }
 }

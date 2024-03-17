@@ -47,7 +47,7 @@ const FilterIcon = styled(LazyLoadImage)`
 `
 
 const FilterTitle = styled.span`
-  color: var(--etxt, #24313E);
+  color: ${theme.colors.black};
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -58,7 +58,7 @@ const FilterTitle = styled.span`
 
 const CustomBadge = styled(Badge)`
   background: var(--Primary-light, rgba(41, 59, 220, 0.06));
-  color: var(--Primary, #293BDC);
+  color: ${theme.colors.blue};
   font-size: 12px;
   font-style: normal;
   font-weight: 700;

@@ -20,7 +20,9 @@
       {
         "src": "frontend/package.json",
         "use": "@vercel/static-build",
-        "config": { "rootDirectory": "frontend" }
+        "config": {
+          "rootDirectory": "frontend"
+        }
       }
     ]
   },
@@ -28,6 +30,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
+    "@fancyapps/ui": "^5.0.35",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",

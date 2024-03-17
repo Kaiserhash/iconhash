@@ -45,7 +45,7 @@ const AboutListSubtitle = styled('div')({
 });
 
 const AboutListTitle = styled('div')({
-    color: '#24313E',
+    color: theme.colors.black,
     fontWeight: 600,
     fontSize: '14px',
     [`@media (min-width: ${theme.screens.lg})`]: {
