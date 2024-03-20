@@ -1,0 +1,52 @@
+# Translation of Plugins - Post Type Transfer - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Post Type Transfer - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-01-01 09:17:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Post Type Transfer - Stable (latest release)\n"
+
+#: lib/block/class-ptt-guntenberg-metabox.php:17
+msgid "Post Types"
+msgstr "Типы записей"
+
+#: admin/class-quick-edit.php:94
+msgid "&mdash; No Change &mdash;"
+msgstr "&mdash; Без изменений &mdash;"
+
+#: admin/class-quick-edit.php:46
+msgid "Type"
+msgstr "Тип"
+
+#: admin/class-quick-edit.php:33
+msgid "Post Type"
+msgstr "Тип записи"
+
+#: admin/class-post-type-transfer-admin.php:47
+msgid "Post Type:"
+msgstr "Тип записи:"
+
+#. Author URI of the plugin
+msgid "https://www.krishaweb.com/"
+msgstr "https://www.krishaweb.com/"
+
+#. Author of the plugin
+msgid "KrishaWeb"
+msgstr "KrishaWeb"
+
+#. Description of the plugin
+msgid "This plugin will allow user to change post type to other public post types or page."
+msgstr "Этот плагин позволяет менять тип записи на другой тип записи или страницы."
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/post-type-transfer/"
+msgstr "https://ru.wordpress.org/plugins/post-type-transfer/"
+
+#. Plugin Name of the plugin
+msgid "Post Type Transfer"
+msgstr "Post Type Transfer"
