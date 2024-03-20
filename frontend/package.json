@@ -22,7 +22,6 @@
       }
     ]
   },
-  "prettier": {},
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
