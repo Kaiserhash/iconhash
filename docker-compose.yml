@@ -79,7 +79,7 @@ services:
       - app-network
   iconichash_wordpressdb:
     image: mysql:latest
-    restart: always
+    restart: on-failure
     ports:
       - 3316:3306
     command: [
