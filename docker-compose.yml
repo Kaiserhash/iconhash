@@ -63,7 +63,7 @@ services:
       - ./php-config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
     networks:
       - app-network
-    restart: unless-stopped
+    restart: always
   pma:
     image: phpmyadmin/phpmyadmin
     environment:
