@@ -1,0 +1,52 @@
+name: Deploy to Develop server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies, settings and build
+        run: |
+          cd frontend/
+          yarn install
+          yarn build
+
+      - name: Copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ vars.SSH_KEY }}
+          source: './build/'
+          target: ${{ vars.SERVER_PATH }}/frontend/build
+          rm: true
+
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script_stop: true
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            nvm use 16
+            cd ${{ vars.SERVER_PATH }}
+            git checkout -f main
+            git pull --rebase
+            cd ${{ vars.SERVER_PATH }}/frontend
+            pm2 restart frontend
