@@ -22,7 +22,7 @@ jobs:
         run: |
           cd frontend/
           yarn install
-          yarn build
+          npx frontity build
 
       - name: Copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
