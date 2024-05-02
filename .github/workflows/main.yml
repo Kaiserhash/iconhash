@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment: frontend-production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,7 +19,6 @@ jobs:
           node-version: '16.x'
 
       - name: Install dependencies, settings and build
-        environment: frontend-production
         run: |
           cd frontend/
           yarn install
