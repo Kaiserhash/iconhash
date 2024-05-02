@@ -19,6 +19,7 @@ jobs:
           node-version: '16.x'
 
       - name: Install dependencies, settings and build
+        environment: frontend-production
         run: |
           cd frontend/
           yarn install
