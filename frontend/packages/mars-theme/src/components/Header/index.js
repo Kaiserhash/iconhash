@@ -14,7 +14,6 @@ const Header = ({state}) => {
       <Container>
         <HeaderWrapper style={{textAlign: 'center'}}>
            <Title  title={headerTitle} />
-           Test
         </HeaderWrapper>
       </Container>
   )
