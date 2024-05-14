@@ -11,7 +11,6 @@ import Link from "@frontity/components/link";
 const SubContainer = styled.div`
    margin-bottom: 15px;
    @media (min-width: ${theme.screens.lg}) {
-     margin-bottom: 94px;
      border-top: 2px solid #89A0B8;
      margin-top: 3px;
    }
